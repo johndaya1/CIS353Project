@@ -1,4 +1,4 @@
-SPOOL apartmentDB.txt
+SPOOL aptDB.txt
 SET ECHO ON
 
 
