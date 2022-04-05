@@ -15,7 +15,7 @@ DROP TABLE buildingManager
 DROP TABLE employee
 DROP TABLE works_on
 
-------
+----------
 
 CREATE TABLE resident
 (
@@ -29,7 +29,7 @@ CREATE TABLE resident
   /* TO DO: INSERT CONSTRAINTS */
   );
   
-  ------  
+  ------------------
   
 CREATE TABLE apartmentUnit
 (
@@ -42,17 +42,57 @@ CREATE TABLE apartmentUnit
   /*TO DO: INSERT CONSTRAINTS*/
   );
     
-   -------
+   ------------------
  CREATE TABLE maintenanceRequest
  (
    resID INTEGER,
    date INTEGER /*FIX THIS*/ ,
-   PRIMARY KEY (resID, date),
+   PRIMARY KEY (resID, date)/*FIX THIS, foreign key*/,
    roomNum INTEGER,
    maintenanceType CHAR(15),
    mgrID INTEGER,
    
   /*TO DO: INSERT CONSTRAINTS*/
    );
+   ---------------------
+  CREATE TABLE buildingManager
+  (
+    mgrID INTEGER PRIMARY KEY,
+    isLandlord CHAR(3) NOT NULL,
+    name CHAR(32) NOT NULL,
+    pay INTEGER NOT NULL,
+    
+    /*TO DO: INSERT CONSTRAINTS*/
+    );
+    -------------------
+   CREATE TABLE employee
+   (
+     eId INTEGER PRIMARY KEY,
+     name CHAR(32) NOT NULL,
+     pay INTEGER NOT NULL,
+     mgrID INTEGER NOT NULL,
+     
+     /*TO DO: INSERT CONTRAINTS*/
+     );
+     ----------------
+   CREATE TABLE certification
+   (
+     eID INTEGER,
+     certLevel INTEGER,
+     
+     /*TO DO: INSERT CONSTRAINTS*/
+     );
+     
+     ----------------
+    CREATE TABLE worksOn
+    (
+      eID INTEGER,
+      requestID INTEGER,
+      
+      /*TO DO: INSERT CONSTRAINTS*/
+      );
+      
+    
+    
    
     
