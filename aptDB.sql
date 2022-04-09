@@ -27,6 +27,7 @@ CREATE TABLE resident
   major CHAR(30),
   
   /* TO DO: INSERT CONSTRAINTS */
+   
   );
   
   ------------------
@@ -37,9 +38,11 @@ CREATE TABLE apartmentUnit
   style CHAR(12) NOT NULL,
   condition CHAR(12) NOT NULL,
   price INTEGER NOT NULL,
-  availaility CHAR(12) NOT NULL,
+  availability CHAR(12) NOT NULL,
 
   /*TO DO: INSERT CONSTRAINTS*/
+  CONSTRAINT a1 CHECK (availability IN ('open', 'not open'),
+  CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open')
   );
     
    ------------------
@@ -53,6 +56,8 @@ CREATE TABLE apartmentUnit
    mgrID INTEGER,
    
   /*TO DO: INSERT CONSTRAINTS*/
+   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture')
+                        
    );
    ---------------------
   CREATE TABLE buildingManager
@@ -73,13 +78,16 @@ CREATE TABLE apartmentUnit
      mgrID INTEGER NOT NULL,
      
      /*TO DO: INSERT CONTRAINTS*/
+     CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
+     CONSTRAINT e2 CHECK (NOT (pay > 55,000 OR pay < 25,000)),
+     C
      );
      ----------------
    CREATE TABLE certification
    (
      eID INTEGER,
      certLevel INTEGER,
-     
+    
      /*TO DO: INSERT CONSTRAINTS*/
      );
      
