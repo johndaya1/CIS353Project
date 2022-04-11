@@ -101,6 +101,6 @@ CREATE TABLE apartmentUnit
       );
       
     
-    
+    COMMIT;
    
     
