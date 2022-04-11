@@ -43,7 +43,7 @@ CREATE TABLE apartmentUnit
  CREATE TABLE maintenanceRequest
  (
    resID INTEGER,
-   date INTEGER/*FIX THIS*/,
+   day INTEGER/*FIX THIS*/,
    PRIMARY KEY (resID, date)/*FIX THIS, foreign key*/,
    roomNum INTEGER,
    maintenanceType CHAR(15),
@@ -69,7 +69,7 @@ CREATE TABLE apartmentUnit
      mgrID INTEGER NOT NULL,
      /*TO DO: INSERT CONTRAINTS*/
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
-     CONSTRAINT e2 CHECK (NOT (pay > 55,000 OR pay < 25,000))
+     CONSTRAINT e2 CHECK (NOT ((pay > 55,000) OR (pay < 25,000)))
     );
      ----------------
    CREATE TABLE certification
