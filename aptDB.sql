@@ -44,7 +44,7 @@ CREATE TABLE apartmentUnit
  (
    resID INTEGER,
    day INTEGER/*FIX THIS*/,
-   PRIMARY KEY (resID, date)/*FIX THIS, foreign key*/,
+   PRIMARY KEY (resID, day)/*FIX THIS, foreign key*/,
    roomNum INTEGER,
    maintenanceType CHAR(15),
    mgrID INTEGER,
