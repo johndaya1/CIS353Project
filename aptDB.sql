@@ -100,6 +100,17 @@ CREATE TABLE apartmentUnit
       /*TO DO: INSERT CONSTRAINTS*/
       );
       
+   /*--------------------------------------------------
+   Populate Database
+   ----------------------------------------------------*/
+   
+   alter session set;
+   
+   
+   insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+   
+   
+   --insert into apartmentUnit values
     
     COMMIT;
    
