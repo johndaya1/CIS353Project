@@ -9,7 +9,7 @@ SET ECHO ON
 
 
 DROP TABLE resident;
-apartmentUnit CASCADE CONSTRAINTS
+DROP TABLE apartmentUnit CASCADE CONSTRAINTS;
 /*
 DROP TABLE apartmentUnit;
 DROP TABLE maintenanceRequest;
@@ -37,7 +37,6 @@ CREATE TABLE apartmentUnit
   condition CHAR(12) NOT NULL,
   price INTEGER NOT NULL,
   availability CHAR(12) NOT NULL,
-  
   CONSTRAINT a1 CHECK (availability IN ('open', 'not open')),
   CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open'))
  );
