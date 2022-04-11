@@ -18,7 +18,9 @@ DROP TABLE works_on;
 
 ----------
 */
-CREATE TABLE resident (resID INTEGER PRIMARY KEY);
+CREATE TABLE resident (
+  resID INTEGER PRIMARY KEY
+);
 --unitNum INTEGER NOT NULL,
   --collegeYear INTEGER NOT NULL,
   --name CHAR(50) NOT NULL,
