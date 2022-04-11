@@ -50,7 +50,7 @@ CREATE TABLE apartmentUnit
    maintenanceType CHAR(15),
    mgrID INTEGER,
   /*TO DO: INSERT CONSTRAINTS*/
-   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture')           
+   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))        
   );
    ---------------------
   CREATE TABLE buildingManager
@@ -87,7 +87,7 @@ CREATE TABLE apartmentUnit
       requestID INTEGER
       /*TO DO: INSERT CONSTRAINTS*/
      );
-      */
+    
    /*--------------------------------------------------
    Populate Database
    ----------------------------------------------------*/
