@@ -9,6 +9,7 @@ SET ECHO ON
 
 
 DROP TABLE resident;
+/*
 DROP TABLE apartmentUnit;
 DROP TABLE maintenanceRequest;
 DROP TABLE buildingManager;
@@ -16,7 +17,7 @@ DROP TABLE employee;
 DROP TABLE works_on;
 
 ----------
-
+*/
 CREATE TABLE resident
 (
   resID INTEGER PRIMARY KEY,
@@ -28,8 +29,8 @@ CREATE TABLE resident
   
   /* TO DO: INSERT CONSTRAINTS */
    
-  );
-  
+ );
+  /*
   ------------------
   
 CREATE TABLE apartmentUnit
@@ -43,7 +44,7 @@ CREATE TABLE apartmentUnit
   /*TO DO: INSERT CONSTRAINTS*/
   CONSTRAINT a1 CHECK (availability IN ('open', 'not open'),
   CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open')
-  );
+ );
     
    ------------------
  CREATE TABLE maintenanceRequest
@@ -58,7 +59,7 @@ CREATE TABLE apartmentUnit
   /*TO DO: INSERT CONSTRAINTS*/
    CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture')
                         
-   );
+  );
    ---------------------
   CREATE TABLE buildingManager
   (
@@ -68,7 +69,7 @@ CREATE TABLE apartmentUnit
     pay INTEGER NOT NULL
     
     /*TO DO: INSERT CONSTRAINTS*/
-    );
+   );
     -------------------
    CREATE TABLE employee
    (
@@ -81,7 +82,7 @@ CREATE TABLE apartmentUnit
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
      CONSTRAINT e2 CHECK (NOT (pay > 55,000 OR pay < 25,000))
      
-     );
+    );
      ----------------
    CREATE TABLE certification
    (
@@ -89,7 +90,7 @@ CREATE TABLE apartmentUnit
      certLevel INTEGER
     
      /*TO DO: INSERT CONSTRAINTS*/
-     );
+    );
      
      ----------------
     CREATE TABLE worksOn
@@ -98,13 +99,13 @@ CREATE TABLE apartmentUnit
       requestID INTEGER
       
       /*TO DO: INSERT CONSTRAINTS*/
-      );
-      
+     );
+      */
    /*--------------------------------------------------
    Populate Database
    ----------------------------------------------------*/
    
-   alter session set;
+   --alter session set;
    
    
    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
