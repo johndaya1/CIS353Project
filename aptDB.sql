@@ -24,7 +24,7 @@ CREATE TABLE resident
   collegeYear INTEGER NOT NULL,
   name CHAR(50) NOT NULL,
   SEX CHAR(1) NOT NULL,
-  major CHAR(30),
+  major CHAR(30)
   
   /* TO DO: INSERT CONSTRAINTS */
    
@@ -65,7 +65,7 @@ CREATE TABLE apartmentUnit
     mgrID INTEGER PRIMARY KEY,
     isLandlord CHAR(3) NOT NULL,
     name CHAR(32) NOT NULL,
-    pay INTEGER NOT NULL,
+    pay INTEGER NOT NULL
     
     /*TO DO: INSERT CONSTRAINTS*/
     );
@@ -79,14 +79,14 @@ CREATE TABLE apartmentUnit
      
      /*TO DO: INSERT CONTRAINTS*/
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
-     CONSTRAINT e2 CHECK (NOT (pay > 55,000 OR pay < 25,000)),
-     C
+     CONSTRAINT e2 CHECK (NOT (pay > 55,000 OR pay < 25,000))
+     
      );
      ----------------
    CREATE TABLE certification
    (
      eID INTEGER,
-     certLevel INTEGER,
+     certLevel INTEGER
     
      /*TO DO: INSERT CONSTRAINTS*/
      );
@@ -95,7 +95,7 @@ CREATE TABLE apartmentUnit
     CREATE TABLE worksOn
     (
       eID INTEGER,
-      requestID INTEGER,
+      requestID INTEGER
       
       /*TO DO: INSERT CONSTRAINTS*/
       );
