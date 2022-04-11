@@ -8,12 +8,12 @@ SET ECHO ON
 -------------------------------------------
 
 
-DROP TABLE resident
-DROP TABLE apartmentUnit
-DROP TABLE maintenanceRequest
-DROP TABLE buildingManager
-DROP TABLE employee
-DROP TABLE works_on
+DROP TABLE resident;
+DROP TABLE apartmentUnit;
+DROP TABLE maintenanceRequest;
+DROP TABLE buildingManager;
+DROP TABLE employee;
+DROP TABLE works_on;
 
 ----------
 
