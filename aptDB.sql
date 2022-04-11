@@ -20,12 +20,12 @@ DROP TABLE works_on;
 */
 CREATE TABLE resident
 (
-  resID INTEGER PRIMARY KEY,
-  unitNum INTEGER NOT NULL,
-  collegeYear INTEGER NOT NULL,
-  name CHAR(50) NOT NULL,
-  SEX CHAR(1) NOT NULL,
-  major CHAR(30)
+  resID INTEGER PRIMARY KEY
+--unitNum INTEGER NOT NULL,
+  --collegeYear INTEGER NOT NULL,
+  --name CHAR(50) NOT NULL,
+  --SEX CHAR(1) NOT NULL,
+  --major CHAR(30)
   
   /* TO DO: INSERT CONSTRAINTS */
    
