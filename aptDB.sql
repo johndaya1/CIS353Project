@@ -17,7 +17,7 @@ DROP TABLE worksOn CASCADE CONSTRAINTS;
 DROP TABLE certification CASCADE CONSTRAINTS;
 
 ----------
-*/
+
 CREATE TABLE resident (
   resID INTEGER PRIMARY KEY,
   unitNum INTEGER NOT NULL,
@@ -95,6 +95,10 @@ CREATE TABLE apartmentUnit
    --alter session set;
    
    
+   insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+   insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+   insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+   insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
    
    
