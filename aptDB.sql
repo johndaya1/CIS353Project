@@ -10,12 +10,10 @@ SET ECHO ON
 
 DROP TABLE resident;
 DROP TABLE apartmentUnit CASCADE CONSTRAINTS;
-/*
-DROP TABLE apartmentUnit;
-DROP TABLE maintenanceRequest;
-DROP TABLE buildingManager;
-DROP TABLE employee;
-DROP TABLE works_on;
+DROP TABLE maintenanceRequest CASCADE CONSTRAINTS;
+DROP TABLE buildingManager CASCADE CONSTRAINTS;
+DROP TABLE employee CASCADE CONSTRAINTS;
+DROP TABLE works_on CASCADE CONSTRAINTS;
 
 ----------
 */
@@ -40,20 +38,18 @@ CREATE TABLE apartmentUnit
   CONSTRAINT a1 CHECK (availability IN ('open', 'not open')),
   CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open'))
  );
-   /* 
    ------------------
+   
  CREATE TABLE maintenanceRequest
  (
    resID INTEGER,
-   date INTEGER /*FIX THIS*/ ,
+   date INTEGER/*FIX THIS*/,
    PRIMARY KEY (resID, date)/*FIX THIS, foreign key*/,
    roomNum INTEGER,
    maintenanceType CHAR(15),
    mgrID INTEGER,
-   
   /*TO DO: INSERT CONSTRAINTS*/
-   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture')
-                        
+   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture')           
   );
    ---------------------
   CREATE TABLE buildingManager
@@ -62,7 +58,6 @@ CREATE TABLE apartmentUnit
     isLandlord CHAR(3) NOT NULL,
     name CHAR(32) NOT NULL,
     pay INTEGER NOT NULL
-    
     /*TO DO: INSERT CONSTRAINTS*/
    );
     -------------------
@@ -72,18 +67,15 @@ CREATE TABLE apartmentUnit
      name CHAR(32) NOT NULL,
      pay INTEGER NOT NULL,
      mgrID INTEGER NOT NULL,
-     
      /*TO DO: INSERT CONTRAINTS*/
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
      CONSTRAINT e2 CHECK (NOT (pay > 55,000 OR pay < 25,000))
-     
     );
      ----------------
    CREATE TABLE certification
    (
      eID INTEGER,
      certLevel INTEGER
-    
      /*TO DO: INSERT CONSTRAINTS*/
     );
      
@@ -92,7 +84,6 @@ CREATE TABLE apartmentUnit
     (
       eID INTEGER,
       requestID INTEGER
-      
       /*TO DO: INSERT CONSTRAINTS*/
      );
       */
