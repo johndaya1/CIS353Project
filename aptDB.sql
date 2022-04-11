@@ -26,7 +26,7 @@ CREATE TABLE resident (
   SEX CHAR(1) NOT NULL,
   major CHAR(30)
  );
-  /*
+  
   ------------------
   
 CREATE TABLE apartmentUnit
@@ -36,12 +36,11 @@ CREATE TABLE apartmentUnit
   condition CHAR(12) NOT NULL,
   price INTEGER NOT NULL,
   availability CHAR(12) NOT NULL,
-
-  /*TO DO: INSERT CONSTRAINTS*/
+  
   CONSTRAINT a1 CHECK (availability IN ('open', 'not open'),
   CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open')
  );
-    
+   /* 
    ------------------
  CREATE TABLE maintenanceRequest
  (
