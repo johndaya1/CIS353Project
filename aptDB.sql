@@ -46,9 +46,9 @@ CREATE TABLE apartmentUnit
    resID INTEGER,
    day INTEGER/*FIX THIS*/,
    PRIMARY KEY (resID, day)/*FIX THIS, foreign key*/,
-   roomNum INTEGER,
    maintenanceType CHAR(15),
    mgrID INTEGER,
+   requestID INTEGER,
   /*TO DO: INSERT CONSTRAINTS*/
    CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))        
   );
