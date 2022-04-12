@@ -2,7 +2,7 @@ SPOOL aptDB.txt
 SET ECHO ON
 
 
---Authors: Dayaseh Johnson, , , ,
+--Authors: Dayaseh Johnson, Priscila Ontiveros, , ,
 
 
 -------------------------------------------
