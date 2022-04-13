@@ -67,19 +67,19 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      eId INTEGER PRIMARY KEY,
      name CHAR(32) NOT NULL,
      pay INTEGER NOT NULL,
-     mgrID INTEGER NOT NULL, CHECK (VALUE IN (SELECT eID FROM employee),
+     mgrID INTEGER NOT NULL,
      /*TO DO: INSERT CONTRAINTS*/
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
      CONSTRAINT e2 CHECK (NOT (pay > 55000)),
-     CONSTRAINT e3 CHECK (NOT (pay < 25000)),
-     CONSTRAINT e4 CHECK (mgrID IN (SELECT eID FROM employee))
+     CONSTRAINT e3 CHECK (NOT (pay < 25000))
     );
      ----------------
    CREATE TABLE certification   /*DJ*/
    (
      eID INTEGER,
-     certLevel INTEGER
+     cert CHAR(15),
      /*TO DO: INSERT CONSTRAINTS*/
+     CONSTRAINT c1 CHECK (cert IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
     );
      
      ----------------
