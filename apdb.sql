@@ -122,7 +122,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    insert into certification values (24, 'electrical');
    insert into certification values (30, 'electrical');
    
-   SELECT e.name, e.eid
+   SELECT e.name, e.eid, c.cert
    FROM   employee e, maintenanceRequest m, worksOn w, certification c
    WHERE e.eid = w.eid AND 
 	 /*c.cert = electrical AND*/
