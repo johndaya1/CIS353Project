@@ -18,7 +18,7 @@ DROP TABLE certification CASCADE CONSTRAINTS;
 
 ----------
 
-CREATE TABLE resident (
+CREATE TABLE resident (         /* Priscilla*/
   resID INTEGER PRIMARY KEY,
   unitNum INTEGER NOT NULL,
   collegeYear INTEGER NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE resident (
   
   ------------------
   
-CREATE TABLE apartmentUnit
+CREATE TABLE apartmentUnit    /*priscilla*/
 (
   roomNum INTEGER PRIMARY KEY,
   style CHAR(12) NOT NULL,
@@ -41,19 +41,19 @@ CREATE TABLE apartmentUnit
  );
    ------------------
    
- CREATE TABLE maintenanceRequest
+ CREATE TABLE maintenanceRequest    /*Grant*/
  (
    resID INTEGER,
    day INTEGER/*FIX THIS*/,
    PRIMARY KEY (resID, day)/*FIX THIS, foreign key*/,
-   roomNum INTEGER,
    maintenanceType CHAR(15),
    mgrID INTEGER,
+   requestID INTEGER,
   /*TO DO: INSERT CONSTRAINTS*/
    CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))        
   );
    ---------------------
-  CREATE TABLE buildingManager
+  CREATE TABLE buildingManager    /*Grant*/
   (
     mgrID INTEGER PRIMARY KEY,
     isLandlord CHAR(3) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE apartmentUnit
     /*TO DO: INSERT CONSTRAINTS*/
    );
     -------------------
-   CREATE TABLE employee
+   CREATE TABLE employee        /*DJ*/
    (
      eId INTEGER PRIMARY KEY,
      name CHAR(32) NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE apartmentUnit
     --CONSTRAINT e2 CHECK (NOT ((pay < 55,000) AND (pay > 25,000)))
     );
      ----------------
-   CREATE TABLE certification
+   CREATE TABLE certification   /*DJ*/
    (
      eID INTEGER,
      certLevel INTEGER
@@ -81,14 +81,14 @@ CREATE TABLE apartmentUnit
     );
      
      ----------------
-    CREATE TABLE worksOn
+    CREATE TABLE worksOn      /*Jack*/
     (
       eID INTEGER,
       requestID INTEGER
       /*TO DO: INSERT CONSTRAINTS*/
      );
     
-   /*--------------------------------------------------
+   /*--------------------------------------------------       /*Jack*/
    Populate Database
    ----------------------------------------------------*/
    
