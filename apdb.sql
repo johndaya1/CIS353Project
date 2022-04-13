@@ -101,12 +101,12 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    
    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
    
-   insert into buildingManager (123, 'No', 'Bill', 55000);
+   insert into buildingManager (111, 'No', 'Bill', 55000);
    insert into buildingManager (124, 'No', 'Tammy', 55000);
    
-   insert into employee values (12, 'Tom', 30000, 123);
-   insert into employee values (18, 'David', 30000, 123);
-   insert into employee values (24, 'John', 30000, 123);
+   insert into employee values (12, 'Tom', 30000, 111);
+   insert into employee values (18, 'David', 30000, 111);
+   insert into employee values (24, 'John', 30000, 111);
    insert into employee values (30, 'Guy', 30000, 124);
    
    insert into worksOn values (12, 444);
@@ -114,7 +114,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    insert into worksOn values (24, 455);
    insert into worksOn values (30, 455);
    
-   insert into maintenanceRequest values (1234, 3, 'electrical', 123, 444);
+   insert into maintenanceRequest values (1234, 3, 'electrical', 111, 444);
    insert into maintenanceRequest values (1234, 4, 'electrical', 124, 455);
    
    insert into certification values (12, 'electrical');
