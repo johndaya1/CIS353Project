@@ -67,12 +67,12 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      eId INTEGER PRIMARY KEY,
      name CHAR(32) NOT NULL,
      pay INTEGER NOT NULL,
-     mgrID INTEGER NOT NULL
-              CHECK (VALUE IN (SELECT eID FROM employee),
+     mgrID INTEGER NOT NULL, CHECK (VALUE IN (SELECT eID FROM employee),
      /*TO DO: INSERT CONTRAINTS*/
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
      CONSTRAINT e2 CHECK (NOT (pay > 55000)),
-     CONSTRAINT e3 CHECK (NOT (pay < 25000))
+     CONSTRAINT e3 CHECK (NOT (pay < 25000)),
+     CONSTRAINT e4 CHECK (VALUE IN (SELECT eID FROM employee))
     );
      ----------------
    CREATE TABLE certification   /*DJ*/
@@ -90,7 +90,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
       /*TO DO: INSERT CONSTRAINTS*/
      );
     
-   /*--------------------------------------------------       /*Jack*/
+   /*--------------------------------------------------       Jack
    Populate Database
    ----------------------------------------------------*/
    
@@ -98,7 +98,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    
    
    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
-   insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+   --insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
    
    
    --insert into apartmentUnit values
