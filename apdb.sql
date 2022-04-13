@@ -72,7 +72,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
      CONSTRAINT e2 CHECK (NOT (pay > 55000)),
      CONSTRAINT e3 CHECK (NOT (pay < 25000)),
-     CONSTRAINT e4 CHECK (VALUE IN (SELECT eID FROM employee))
+     CONSTRAINT e4 CHECK (mgrID IN (SELECT eID FROM employee))
     );
      ----------------
    CREATE TABLE certification   /*DJ*/
