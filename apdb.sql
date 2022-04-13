@@ -44,7 +44,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
  CREATE TABLE maintenanceRequest    /*Grant*/
  (
    resID INTEGER,
-   day INTEGER/*FIX THIS*/,
+   day INTEGER, /*fix this*/
    PRIMARY KEY (resID, day)/*FIX THIS, foreign key*/,
    maintenanceType CHAR(15),
    mgrID INTEGER,
@@ -60,6 +60,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     name CHAR(32) NOT NULL,
     pay INTEGER NOT NULL
     /*TO DO: INSERT CONSTRAINTS*/
+    CONSTRAINT bm1 CHECK (NOT (pay < 55000)),
+    CONSTRAINT bm2 CHECK (NOT (pay > 100000))
    );
     -------------------
    CREATE TABLE employee        /*DJ*/
@@ -98,9 +100,36 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    
    
    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
-   --insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
    
+   insert into buildingManager (123, 'No', 'Bill', 55000);
+   insert into buildingManager (124, 'No', 'Tammy', 55000);
    
+   insert into employee values (12, 'Tom', 30000, 123);
+   insert into employee values (18, 'David', 30000, 123);
+   insert into employee values (24, 'John', 30000, 123);
+   insert into employee values (30, 'Guy', 30000, 124);
+   
+   insert into worksOn values (12, 444);
+   insert into worksOn values (18, 444);
+   insert into worksOn values (24, 455);
+   insert into worksOn values (30, 455);
+   
+   insert into maintenanceRequest values (1234, 3, 'electrical', 123, 444);
+   insert into maintenanceRequest values (1234, 4, 'electrical', 124, 455);
+   
+   insert into certification values (12, 'electrical');
+   insert into certification values (18, 'plumbing');
+   insert into certification values (24, 'electrical');
+   insert into certification values (30, 'electrical');
+   
+   SELECT e.name, e.eid
+   FROM   employee e, maintenanceRequest m, worksOn w, certifications c
+   WHERE e.eid = w.eid AND 
+	       c.cert = ‘electrical’ AND
+	       e.mgrId = m.mgrId AND
+	       w.requestId = m.requestId
+  ORDER BY eid;
+
    --insert into apartmentUnit values
     
     COMMIT;
