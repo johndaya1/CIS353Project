@@ -8,7 +8,7 @@ SET ECHO ON
 -------------------------------------------
 
 
-DROP TABLE resident;
+DROP TABLE resident CASCADE CONSTRAINTS;
 DROP TABLE apartmentUnit CASCADE CONSTRAINTS;
 DROP TABLE maintenanceRequest CASCADE CONSTRAINTS;
 DROP TABLE buildingManager CASCADE CONSTRAINTS;
@@ -66,7 +66,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    (
      eId INTEGER PRIMARY KEY,
      name CHAR(32) NOT NULL,
-     pay INTEGER NOT NULL,
+     pay INTEGER,
      mgrID INTEGER NOT NULL,
      /*TO DO: INSERT CONTRAINTS*/
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
