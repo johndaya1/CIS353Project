@@ -67,10 +67,12 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      eId INTEGER PRIMARY KEY,
      name CHAR(32) NOT NULL,
      pay INTEGER NOT NULL,
-     mgrID INTEGER NOT NULL,
+     mgrID INTEGER NOT NULL
+              CHECK (VALUE IN (SELECT eID FROM employee),
      /*TO DO: INSERT CONTRAINTS*/
-     CONSTRAINT e1 CHECK (NOT (eId = mgrID))
-    --CONSTRAINT e2 CHECK (NOT ((pay < 55,000) AND (pay > 25,000)))
+     CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
+     CONSTRAINT e2 CHECK (NOT (pay > 55000)),
+     CONSTRAINT e3 CHECK (NOT (pay < 25000))
     );
      ----------------
    CREATE TABLE certification   /*DJ*/
