@@ -125,7 +125,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    SELECT e.name, e.eid
    FROM   employee e, maintenanceRequest m, worksOn w, certification c
    WHERE e.eid = w.eid AND 
-	 c.cert = electrical AND
+	 /*c.cert = electrical AND*/
+	 e.eid = c.eid AND
 	 e.mgrId = m.mgrId AND
 	 w.requestId = m.requestId
   ORDER BY eid;
