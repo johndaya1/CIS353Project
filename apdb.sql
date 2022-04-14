@@ -100,6 +100,10 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    
    
    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+   insert into resident values (1235, 02, 3, 'Jane Doe', 'F', 'Computer Science');
+   insert into resident values (1236, 03, 1, 'Beyonce Knowles', 'F', 'Computer Science');
+   insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
+   insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
    
    insert into buildingManager values(123, 'No', 'Bill', 55000);
    insert into buildingManager values(124, 'No', 'Tammy', 55000);
