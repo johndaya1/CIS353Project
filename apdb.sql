@@ -122,9 +122,10 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    
    insert into maintenanceRequest values (1234, '01-01-22', 'electrical', 123, 444);
    
-   insert into maintenanceRequest values (1234, 4, 'electrical', 124, 455);
+   /*insert into maintenanceRequest values (1234, 4, 'electrical', 124, 455);
    insert into maintenanceRequest values (1235, 5, 'plumbing', 124, 455);
-   insert into maintenanceRequest values (1240, 2, 'furniture', 124, 455);
+   */
+   insert into maintenanceRequest values (1240, '01-01-22', 'furniture', 124, 455);
    --insert into maintenanceRequest values (1238, 
    
    insert into certification values (12, 'electrical');
