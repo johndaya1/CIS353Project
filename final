@@ -16,6 +16,8 @@ COMMIT;
 --
 < One query (per table) of the form: SELECT * FROM table; in order to display your database >
 --
+SELECT *
+FROM 
 < The SQL queries>. Include the following for each query:
 − A comment line stating the query number and the feature(s) it demonstrates
 (e.g. -- Q25 – correlated subquery).
