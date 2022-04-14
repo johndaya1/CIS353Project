@@ -40,20 +40,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open'))
  );
    ------------------
-   
- CREATE TABLE maintenanceRequest    /*Grant*/
- (
-   resID INTEGER,
-   day INTEGER, /*fix this*/
-   PRIMARY KEY (resID, day)/*FIX THIS, foreign key*/,
-   maintenanceType CHAR(15),
-   mgrID INTEGER,
-   requestID INTEGER,
-  /*TO DO: INSERT CONSTRAINTS*/
-   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))        
-  );
-   ---------------------
-  CREATE TABLE buildingManager    /*Grant*/
+   CREATE TABLE buildingManager    /*Grant*/
   (
     mgrID INTEGER PRIMARY KEY,
     isLandlord CHAR(3) NOT NULL,
@@ -63,6 +50,21 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     CONSTRAINT bm1 CHECK (NOT (pay < 55000)),
     CONSTRAINT bm2 CHECK (NOT (pay > 100000))
    );
+   -------------------
+ CREATE TABLE maintenanceRequest    /*Grant*/
+ (
+   resID INTEGER,
+   day DATE,
+   maintenanceType CHAR(15),
+   mgrID INTEGER,
+   requestID INTEGER,
+   PRIMARY KEY (requestID),
+   FOREIGN KEY (resID) REFERENCES resident(resID),
+   FOREIGN KEY (mgrID) REFERENCES buildingManager(mgrID),
+  /*TO DO: INSERT CONSTRAINTS*/
+   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
+  );
+   ---------------------
     -------------------
    CREATE TABLE employee        /*DJ*/
    (
