@@ -63,5 +63,5 @@
     insert into certification values (24, 'electrical');
     insert into certification values (30, 'electrical');
         --## IC Testing ##--
-        -- 11 (check for a valid maintenance type)
+        -- c1 (check for a valid maintenance type)
         insert into certification values (36, 'flooring');
