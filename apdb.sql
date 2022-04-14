@@ -148,7 +148,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   
   /*find the resId every resident that has submitted a maintenance request that was electrical*/
   
-  SELECT DISTINCT mr1.resId
+  SELECT mr1.resId
   FROM maintenanceRequest mr1
   WHERE NOT EXISTS ((SELECT mr2.maintenanceType
 		     FROM maintenanceRequest mr2
