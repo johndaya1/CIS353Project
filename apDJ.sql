@@ -58,7 +58,6 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    day DATE,
    maintenanceType CHAR(15),
    mgrId INTEGER,
-   requestId INTEGER,
    PRIMARY KEY (resId, day, requestId),
    FOREIGN KEY (resId) REFERENCES resident(resId),
    FOREIGN KEY (mgrId) REFERENCES buildingManager(mgrId),
@@ -92,10 +91,13 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     CREATE TABLE worksOn      /*Jack*/
     (
       eId INTEGER,
-      requestId INTEGER,
+      resId INTEGER,
+      day DATE,
+      hours INTEGER,
       FOREIGN KEY (eId) REFERENCES employee(eId),
-      FOREIGN KEY (requestId) REFERENCES maintenanceRequest(requestId),
-      PRIMARY KEY(requestId, eId)
+      FOREIGN KEY (resId) REFERENCES maintenanceRequest(resId),
+      FOREIGN KEY (day) REFERENCES maintenanceRequest(day)
+      PRIMARY KEY(resId, day)
      );
     
    /*--------------------------------------------------       Jack
