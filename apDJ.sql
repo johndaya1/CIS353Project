@@ -42,7 +42,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    ------------------
    CREATE TABLE buildingManager    /*Grant*/
   (
-    mgrID INTEGER PRIMARY KEY,
+    mgrId INTEGER PRIMARY KEY,
     isLandlord CHAR(3) NOT NULL,
     name CHAR(32) NOT NULL,
     pay INTEGER NOT NULL
@@ -54,14 +54,14 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    -------------------
  CREATE TABLE maintenanceRequest    /*Grant*/
  (
-   resID INTEGER,
+   resId INTEGER,
    day DATE,
    maintenanceType CHAR(15),
-   mgrID INTEGER,
-   requestID INTEGER,
+   mgrId INTEGER,
+   requestId INTEGER,
    PRIMARY KEY (resId, day),
-   FOREIGN KEY (resID) REFERENCES resident(resID),
-   FOREIGN KEY (mgrID) REFERENCES buildingManager(mgrID),
+   FOREIGN KEY (resId) REFERENCES resident(resId),
+   FOREIGN KEY (mgrId) REFERENCES buildingManager(mgrId),
   /*TO DO: INSERT CONSTRAINTS*/
    CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
   );
@@ -81,8 +81,9 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      ----------------
    CREATE TABLE certification   /*DJ*/
    (
-     eID INTEGER,
+     eId INTEGER,
      cert CHAR(15),
+     FOREIGN KEY (eId) REFERENCES employee(eId),
      /*TO DO: INSERT CONSTRAINTS*/
      CONSTRAINT c1 CHECK (cert IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
     );
