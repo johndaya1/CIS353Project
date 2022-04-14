@@ -139,7 +139,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
   FROM resident r1, resident r2
   WHERE r1.sex = r2.sex AND
-  	r1.collegeYear = r2.collegeYear AND
+  	r1.collegeYear = r2.collegeYear + 1 AND
 	(NOT r1.name = r2.name)
   ORDER BY r1.collegeYear ASC;
    --insert into apartmentUnit values
