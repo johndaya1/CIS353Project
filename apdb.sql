@@ -98,12 +98,12 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    Populate Database
    ----------------------------------------------------*/
    
-   NLS_DATE_FORMAT = 'YYYY-MM-DD';
+   NLS_DATE_FORMAT = 'MM-DD-YY';
    
    
-   insert into resident values (1234, 01, 2022-01-01, 'John Doe', 'M', 'Computer Science');
-   insert into resident values (1235, 02, 2022-01-02, 'Jane Doe', 'F', 'Computer Science');
-   insert into resident values (1236, 03, 1, 'Beyonce Knowles', 'F', 'Computer Science');
+   insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+   insert into resident values (1235, 02, 3, 'Jane Doe', 'F', 'Computer Science');
+   insert into resident values (1236, 03, 4, 'Beyonce Knowles', 'F', 'Computer Science');
    insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
    insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
    
@@ -120,7 +120,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    insert into worksOn values (24, 455);
    insert into worksOn values (30, 455);
    
-   insert into maintenanceRequest values (1234, 01-01-22, 'electrical', 123, 444);
+   insert into maintenanceRequest values (1234, '01-01-22', 'electrical', 123, 444);
    /*
    insert into maintenanceRequest values (1234, 4, 'electrical', 124, 455);
    insert into maintenanceRequest values (1235, 5, 'plumbing', 124, 455);
