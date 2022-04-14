@@ -135,13 +135,27 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 	 e.mgrId = m.mgrId AND
 	 w.requestId = m.requestId
   ORDER BY eid;
-  
+  /*select find pairs of students that are the same sex and 1 year apart in school. select the name, sex, and current year*/
   SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
   FROM resident r1, resident r2
   WHERE r1.sex = r2.sex AND
   	r1.collegeYear = r2.collegeYear + 1 AND
 	(NOT r1.name = r2.name)
   ORDER BY r1.collegeYear ASC;
+  
+  /*find the resId every resident that has submitted a maintenance request that was electrical*/
+  
+  SELECT mr1. resID
+  FROM maintenanceRequest mr1
+  WHERE NOT EXISTS ((SELECT mr2.maintenanceType
+		     FROM maintenanceRequest mr2
+		     WHERE maintenanceType = 'electrical')
+		    MINUS
+		    (SELECT maintenanceType 
+		     FROM maintenanceRequest mr3
+		     WHERE mr1.resID = mr3.resID AND
+		     	   mr3.maintenanceType = 'electrical'
+		     ));
    --insert into apartmentUnit values
     
     COMMIT;
