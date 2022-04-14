@@ -47,7 +47,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     name CHAR(32) NOT NULL,
     pay INTEGER NOT NULL
     /*TO DO: INSERT CONSTRAINTS*/
-    CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000),
+    CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
     CONSTRAINT bm3 CHECK (isLandlord IN ('yes', 'no')),
     CONSTRAINT bm4 CHECK (NOT (pay < 80000 AND isLandlord = 'yes'))
    );
@@ -63,7 +63,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    FOREIGN KEY (resID) REFERENCES resident(resID),
    FOREIGN KEY (mgrID) REFERENCES buildingManager(mgrID),
   /*TO DO: INSERT CONSTRAINTS*/
-   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
+   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture')),
+   CONSTRAINT m2 CHECK (NOT (day > 04-15-22))
   );
    ---------------------
     -------------------
