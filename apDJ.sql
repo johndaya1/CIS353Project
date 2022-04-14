@@ -48,7 +48,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     pay INTEGER NOT NULL
     /*TO DO: INSERT CONSTRAINTS*/
     CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
-    CONSTRAINT bm3 CHECK (isLandlord IN ('yes', 'no')),
+    CONSTRAINT bm3 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
     CONSTRAINT bm4 CHECK (NOT (pay < 80000 AND isLandlord = 'yes'))
    );
    -------------------
