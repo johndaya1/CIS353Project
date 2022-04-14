@@ -15,7 +15,7 @@ DROP TABLE buildingManager CASCADE CONSTRAINTS;
 DROP TABLE employee CASCADE CONSTRAINTS;
 DROP TABLE worksOn CASCADE CONSTRAINTS;
 DROP TABLE certification CASCADE CONSTRAINTS;
-
+alter session set NLS_DATE_FORMAT = 'MM-DD-YY';
 ----------
 
 CREATE TABLE resident (         /* Priscilla*/
