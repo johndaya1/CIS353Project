@@ -95,7 +95,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
       day DATE,
       hours INTEGER,
       FOREIGN KEY (eId) REFERENCES employee(eId),
-      FOREIGN KEY (resId) REFERENCES resident(resId),
+      FOREIGN KEY (resId, day) REFERENCES maintenanceRequest(resId, day),
       --FOREIGN KEY (day) REFERENCES maintenanceRequest(day),
       PRIMARY KEY(resId, day)
      );
