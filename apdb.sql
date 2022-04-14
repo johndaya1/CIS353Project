@@ -148,7 +148,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   
   /*find the resId every resident that has submitted a maintenance request that was electrical*/
   
-  SELECT DISTINCT mr1.resID
+  SELECT DISTINCT mr1.resId
   FROM maintenanceRequest mr1
   WHERE NOT EXISTS ((SELECT mr2.maintenanceType
 		     FROM maintenanceRequest mr2
@@ -159,6 +159,14 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 		     WHERE mr1.resID = mr3.resID AND
 		     	   mr3.maintenanceType = 'electrical'
 		     ));
+/*Find the resId of every student that is past their 1st year and has not submitted a maintenance request*/
+	   
+  	SELECT DISTINCT r1.resId
+ 	FROM resident r1
+	WHERE collegeYear > 1 AND
+	      r1.resId NOT IN (SELECT r2.resId
+			       FROM maintenanceRequest r2);
+	
    --insert into apartmentUnit values
     
     COMMIT;
