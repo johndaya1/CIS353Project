@@ -59,7 +59,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    maintenanceType CHAR(15),
    mgrId INTEGER,
    requestId INTEGER,
-   PRIMARY KEY (resId, day),
+   PRIMARY KEY (resId, day, requestId),
    FOREIGN KEY (resId) REFERENCES resident(resId),
    FOREIGN KEY (mgrId) REFERENCES buildingManager(mgrId),
   /*TO DO: INSERT CONSTRAINTS*/
