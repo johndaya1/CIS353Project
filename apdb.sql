@@ -122,7 +122,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    insert into certification values (24, 'electrical');
    insert into certification values (30, 'electrical');
    
-   SELECT e.name, e.eid, c.cert
+   /* select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager */
+   SELECT e.name, e.eid
    FROM   employee e, maintenanceRequest m, worksOn w, certification c
    WHERE e.eid = w.eid AND 
 	 c.cert = m.maintenanceType AND
@@ -130,6 +131,10 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 	 e.mgrId = m.mgrId AND
 	 w.requestId = m.requestId
   ORDER BY eid;
+  
+  SELECT DISTINCT e1.name, e2.name
+  FROM employee e1, employee e2
+  WHERE e1.mgrId = e2.mgrId;
 
    --insert into apartmentUnit values
     
