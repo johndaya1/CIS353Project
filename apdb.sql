@@ -128,8 +128,9 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    insert into certification values (18, 'plumbing');
    insert into certification values (24, 'electrical');
    insert into certification values (30, 'electrical');
-   
-   /* select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager */
+	   
+   --QUERY 1
+   /* select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager*/
    SELECT e.name, e.eid
    FROM   employee e, maintenanceRequest m, worksOn w, certification c
    WHERE e.eid = w.eid AND 
@@ -138,6 +139,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 	 e.mgrId = m.mgrId AND
 	 w.requestId = m.requestId
   ORDER BY eid;
+	   
+  --QUERY 2
   /*select find pairs of students that are the same sex and 1 year apart in school. select the name, sex, and current year*/
   SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
   FROM resident r1, resident r2
@@ -146,8 +149,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 	(NOT r1.name = r2.name)
   ORDER BY r1.collegeYear ASC;
   
+	   --QUERY 8
   /*find the resId every resident that has submitted a maintenance request that was electrical*/
-  
   SELECT DISTINCT mr1.resId
   FROM maintenanceRequest mr1
   WHERE NOT EXISTS ((SELECT mr2.maintenanceType
@@ -159,13 +162,13 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 		     WHERE mr1.resID = mr3.resID AND
 		     	   mr3.maintenanceType = 'electrical'
 		     ));
-/*Find the resId of every student that is past their 1st year and has not submitted a maintenance request*/
-	   
-  	SELECT DISTINCT r1.resId
- 	FROM resident r1
-	WHERE collegeYear > 1 AND
-	      r1.resId NOT IN (SELECT r2.resId
-			       FROM maintenanceRequest r2);
+	   --QUERY 7
+/*Find the resId of every student that is past their 1st year and has not submitted a maintenance request*/	   
+SELECT DISTINCT r1.resId
+FROM resident r1
+WHERE collegeYear > 1 AND
+      r1.resId NOT IN (SELECT r2.resId
+		       FROM maintenanceRequest r2);
 	
    --insert into apartmentUnit values
     
