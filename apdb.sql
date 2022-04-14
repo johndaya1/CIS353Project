@@ -137,7 +137,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   WHERE r1.sex = r2.sex AND
   	r1.collegeYear = r2.collegeYear AND
 	(NOT r1.name = r2.name)
-  ORDER BY collegeYear ASC;
+  ORDER BY r1.collegeYear ASC;
    --insert into apartmentUnit values
     
     COMMIT;
