@@ -120,6 +120,9 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    
    insert into maintenanceRequest values (1234, 3, 'electrical', 123, 444);
    insert into maintenanceRequest values (1234, 4, 'electrical', 124, 455);
+   insert into maintenanceRequest values (1235, 5, 'plumbing', 124, 455);
+   insert into maintenanceRequest values (1236, 2, 'furniture', 124, 455);
+   insert into maintenanceRequest values (
    
    insert into certification values (12, 'electrical');
    insert into certification values (18, 'plumbing');
@@ -145,7 +148,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   
   /*find the resId every resident that has submitted a maintenance request that was electrical*/
   
-  SELECT mr1. resID
+  SELECT DISTINCT mr1.resID
   FROM maintenanceRequest mr1
   WHERE NOT EXISTS ((SELECT mr2.maintenanceType
 		     FROM maintenanceRequest mr2
