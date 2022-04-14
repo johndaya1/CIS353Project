@@ -132,10 +132,12 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 	 w.requestId = m.requestId
   ORDER BY eid;
   
-  SELECT DISTINCT e1.name, e2.name
-  FROM employee e1, employee e2
-  WHERE e1.mgrId = e2.mgrId;
-
+  SELECT DISTINCT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
+  FROM resident r1, resident r2
+  WHERE r1.sex = r2.sex AND
+  	r1.collegeYear = r2.collegeYear AND
+	(NOT r1.name = r2.name)
+  ORDER BY collegeYear ASC;
    --insert into apartmentUnit values
     
     COMMIT;
