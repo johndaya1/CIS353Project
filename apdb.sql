@@ -47,7 +47,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     name CHAR(32) NOT NULL,
     pay INTEGER NOT NULL
     /*TO DO: INSERT CONSTRAINTS*/
-    CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
+    CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000))
    );
    -------------------
  CREATE TABLE maintenanceRequest    /*Grant*/
