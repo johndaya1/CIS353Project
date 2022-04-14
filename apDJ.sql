@@ -63,8 +63,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    FOREIGN KEY (resID) REFERENCES resident(resID),
    FOREIGN KEY (mgrID) REFERENCES buildingManager(mgrID),
   /*TO DO: INSERT CONSTRAINTS*/
-   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture')),
-   CONSTRAINT m2 CHECK (NOT (day > 04-15-22))
+   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
   );
    ---------------------
     -------------------
