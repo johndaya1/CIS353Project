@@ -98,7 +98,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    Populate Database
    ----------------------------------------------------*/
    
-   NLS_DATE_FORMAT = 'MM-DD-YY';
+   NLS_DATE_FORMAT = 'YYYY-MM-DD';
    
    
    insert into resident values (1234, 01, 2022-01-01, 'John Doe', 'M', 'Computer Science');
