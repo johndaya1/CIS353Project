@@ -15,7 +15,7 @@ DROP TABLE buildingManager CASCADE CONSTRAINTS;
 DROP TABLE employee CASCADE CONSTRAINTS;
 DROP TABLE worksOn CASCADE CONSTRAINTS;
 DROP TABLE certification CASCADE CONSTRAINTS;
-alter session set NLS_DATE_FORMAT = 'MM-DD-YY';
+
 ----------
 
 CREATE TABLE resident (         /* Priscilla*/
@@ -63,8 +63,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    FOREIGN KEY (resID) REFERENCES resident(resID),
    FOREIGN KEY (mgrID) REFERENCES buildingManager(mgrID),
   /*TO DO: INSERT CONSTRAINTS*/
-   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture')),
-   CONSTRAINT m2 CHECK (NOT (day > '04-14-22'))
+   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
   );
    ---------------------
     -------------------
