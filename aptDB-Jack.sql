@@ -26,7 +26,7 @@
         -- bm1 (between 55000 and 100000 pay)
         insert into buildingManager values(999, 'No', 'Bob', 25000);
         -- bm2 (Landlord value constraint)
-        insert into buildingManager values(999, 'Maybe', 'Bob', 55000);
+        insert into buildingManager values(999, 'Y', 'Bob', 55000);
         -- bm3 (is NOT a Landlord and pay is higher than or equal to 80000)
         insert into buildingManager values(999, 'No', 'Bob', 100000);
 
