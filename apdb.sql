@@ -132,7 +132,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 	 w.requestId = m.requestId
   ORDER BY eid;
   
-  SELECT DISTINCT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
+  SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
   FROM resident r1, resident r2
   WHERE r1.sex = r2.sex AND
   	r1.collegeYear = r2.collegeYear AND
