@@ -120,12 +120,12 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    insert into employee values (24, 'John', 30000, 123);
    insert into employee values (30, 'Guy', 30000, 124);
    
-   insert into worksOn values (12, 1234, '01-01-22', 5);
-   
    insert into maintenanceRequest values (1234, '01-01-22', 'electrical', 123);
    insert into maintenanceRequest values (1234, '03-29-21', 'electrical', 124);
    insert into maintenanceRequest values (1235, '03-05-22', 'plumbing', 124);
    insert into maintenanceRequest values (1240, '01-01-22', 'furniture', 124);
+   
+   insert into worksOn values (12, 1234, '01-01-22', 5);
  
    insert into certification values (12, 'electrical');
    insert into certification values (18, 'plumbing');
