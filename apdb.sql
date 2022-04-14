@@ -47,8 +47,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     name CHAR(32) NOT NULL,
     pay INTEGER NOT NULL
     /*TO DO: INSERT CONSTRAINTS*/
-    CONSTRAINT bm1 CHECK (NOT (pay < 55000)),
-    CONSTRAINT bm2 CHECK (NOT (pay > 100000))
+    CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
    );
    -------------------
  CREATE TABLE maintenanceRequest    /*Grant*/
@@ -89,9 +88,11 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      ----------------
     CREATE TABLE worksOn      /*Jack*/
     (
-      eID INTEGER,
-      requestID INTEGER
-      /*TO DO: INSERT CONSTRAINTS*/
+      eId INTEGER,
+      requestId INTEGER,
+      FOREIGN KEY (eId) REFERENCES employee(eId),
+      FOREIGN KEY (requestId) REFERENCES maintenanceRequest(requestId),
+      PRIMARY KEY(requestId, eId)
      );
     
    /*--------------------------------------------------       Jack
@@ -121,13 +122,10 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    insert into worksOn values (30, 455);
    
    insert into maintenanceRequest values (1234, '01-01-22', 'electrical', 123, 444);
-   
-   /*insert into maintenanceRequest values (1234, 4, 'electrical', 124, 455);
-   insert into maintenanceRequest values (1235, 5, 'plumbing', 124, 455);
-   */
+   insert into maintenanceRequest values (1234, '03-29-21', 'electrical', 124, 455);
+   insert into maintenanceRequest values (1235, '03-05-22', 'plumbing', 124, 455);
    insert into maintenanceRequest values (1240, '01-01-22', 'furniture', 124, 455);
-   --insert into maintenanceRequest values (1238, 
-   
+ 
    insert into certification values (12, 'electrical');
    insert into certification values (18, 'plumbing');
    insert into certification values (24, 'electrical');
