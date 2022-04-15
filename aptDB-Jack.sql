@@ -101,7 +101,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
       FOREIGN KEY (eId) REFERENCES employee(eId),
       FOREIGN KEY (resId, day) REFERENCES maintenanceRequest(resId, day),
       PRIMARY KEY(resId, day),
-      CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50));
+      CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50))
      );
     
    /*--------------------------------------------------       Jack
@@ -133,7 +133,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
         insert into buildingManager values(999, '??', 'Bob', 55000);
         -- bm3 (is NOT a Landlord and pay is higher than or equal to 80000)
         --NOT WORKING
-        insert into buildingManager values(999, 'No', 'Bob', 100000);
+        insert into buildingManager values(999, 'Yes', 'Bob', 10000);
 
     -------------------
 
@@ -144,8 +144,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
         --## IC Testing ##--
         -- e1 (check if employee is not a manager)
         --NOT WORKING
-        insert into employee values (36, 'Timothy', 30000, 123);
-        --e2 (check if pay is not less than 25000 and higher than 55000)
+        insert into employee values (36, 'Timothy', 30000, 36);
+        -- e2 (check if pay is not less than 25000 and higher than 55000)
         insert into employee values (36, 'Timothy', 10000, 123);
 
     -------------------
@@ -163,6 +163,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     -------------------
 
     insert into worksOn values (12, 1234, '01-01-22', 5);
+        --## IC Testing ##--
+        insert into worksOn values ()
 
     -------------------
 
