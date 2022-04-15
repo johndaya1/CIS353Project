@@ -173,7 +173,12 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 ------------------------------------------------------------------------------------------------------------------
    insert into worksOn values (12, 1234, '01-01-22', 5);
    --## IC Testing ##--
-        insert into worksOn values ()
+        -- eId Foreign Key
+        insert into worksOn values (1, 1234, '01-01-22', 5);
+        -- resId, day Foreign Key
+        insert into worksOn values (12, 1000, '01-02-21', 5);
+        -- w1 (checks if hours are below 0 or above 50)
+        insert into worksOn values (12, 1234, '01-01-22', -1);
 -----------------------------------------------------------------------------------------------------
    insert into certification values (12, 'electrical');
    insert into certification values (18, 'plumbing');
