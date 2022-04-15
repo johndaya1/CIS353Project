@@ -165,6 +165,9 @@ SET FEEDBACK OFF
    -------------------
 
    insert into worksOn values (12, 1234, '01-01-22', 5);
+   insert into worksOn values (12, 1234, '03-29-21', 1);
+   insert into worksOn values (18, 1235, '03-05-22', 6);
+   insert into worksOn values (30, 1236, '02-07-21', 5);
    
    -------------------
    
@@ -273,7 +276,7 @@ FROM certification;
 		     ));
 		     
   --Q9 - An Outer Join Query
-  --f=Select the name, resident Id, and unit number of every resident. Also show their maintenance request date
+  --Select the name, resident Id, and unit number of every resident. Also show their maintenance request date
   SELECT DISTINCT r.name, r.resId, r.unitNum, m.day
   FROM resident r
   LEFT OUTER JOIN maintenanceRequest m
