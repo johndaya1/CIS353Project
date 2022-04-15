@@ -151,7 +151,27 @@ FROM certification;
   	r1.collegeYear = r2.collegeYear + 1 AND
 	(NOT r1.name = r2.name)
   ORDER BY r1.collegeYear ASC;
-  
+
+  --Q5 - A GROUP BY, HAVING, and ORDER BY
+  --Find the residents who are freshmen (college year = 1)
+  SELECT
+  r.name,r.resID, count(*)
+  FROM resident r
+  WHERE r.collegeYear = 1
+  GROUP BY r.name,r.resID
+  HAVING count(*) > 1
+  ORDER BY r.collegeYear;
+  --Q6 - A correlated subquery
+  --Find reseidents whose college year is 1 and do not have maintenance requests
+  SELECT r.resID, r.name
+  FROM resident r
+  WHERE
+  r.collegeYear = 1 AND
+    NOT EXISTS(
+      SELECT *
+      FROM maintenanceRequest M
+      WHERE m.resID = r.resID
+    );
   --Q7 - A non-correlated subquery
   --Find the resId of every student that is past their 1st year and has not submitted a maintenance request
   SELECT DISTINCT r.resId
