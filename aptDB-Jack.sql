@@ -52,7 +52,6 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     isLandlord CHAR(3) NOT NULL,
     name CHAR(32) NOT NULL,
     pay INTEGER NOT NULL
-    /*TO DO: INSERT CONSTRAINTS*/
     CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
     CONSTRAINT bm2 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
     CONSTRAINT bm3 CHECK (NOT (pay < 80000 AND isLandlord = 'yes'))
@@ -117,10 +116,10 @@ CREATE TABLE apartmentUnit    /*priscilla*/
         --## IC Testing ##-- WORKS
         -- r1 (Gender constraint)
         insert into resident values (0001, 10, 1, 'Mike Mike', 'm', 'Computer Science');
-        insert into resident values (0001, 10, 1, 'Mike Mike', 'f', 'Computer Science');
         -- r2 (Major constraint)
         insert into resident values (0001, 10, 1, 'Mike Mike', 'M', 'Business');
-        insert into resident values (0001, 10, 1, 'Mike Mike', 'F', 'Gender Studies');
+        -- r3 (collegeYear cannot be more than 6)
+        insert into resident values (0001, 10, 7, 'Mike Mike', 'M', 'Business');
 
     -------------------
 
@@ -132,7 +131,6 @@ CREATE TABLE apartmentUnit    /*priscilla*/
         -- bm2 (Landlord value constraint)
         insert into buildingManager values(999, '??', 'Bob', 55000);
         -- bm3 (is NOT a Landlord and pay is higher than or equal to 80000)
-        --NOT WORKING
         insert into buildingManager values(999, 'Yes', 'Bob', 10000);
 
     -------------------
@@ -143,7 +141,6 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     insert into employee values (30, 'Guy', 30000, 124);
         --## IC Testing ##--
         -- e1 (check if employee is not a manager)
-        --NOT WORKING
         insert into employee values (36, 'Timothy', 30000, 36);
         -- e2 (check if pay is not less than 25000 and higher than 55000)
         insert into employee values (36, 'Timothy', 10000, 123);
@@ -157,24 +154,33 @@ CREATE TABLE apartmentUnit    /*priscilla*/
         --## IC Testing ##--
         -- m1 (check for a valid maintenance type)
         insert into maintenanceRequest values (1235, '02-04-22', 'flooring', 124);
-        -- Foreign Key
+        -- resId Foreign Key
         insert into maintenanceRequest values (1000, '01-01-22', 'furniture', 124);
+        -- mgrId Foreign Key
+        insert into maintenanceRequest values (1235, '01-01-22', 'furniture', 100);
 
     -------------------
-
-    insert into worksOn values (12, 1234, '01-01-22', 5);
-        --## IC Testing ##--
-        insert into worksOn values ()
-
-    -------------------
-
+    
     insert into certification values (12, 'electrical');
     insert into certification values (18, 'plumbing');
     insert into certification values (24, 'electrical');
     insert into certification values (30, 'electrical');
         --## IC Testing ##--
         -- c1 (check for a valid maintenance type)
-        insert into certification values (36, 'flooring');
+        insert into certification values (30, 'flooring');
+        -- eId Foreign Key
+        insert into certification values (36, 'electrical');
+    
+    -------------------
+
+    insert into worksOn values (12, 1234, '01-01-22', 5);
+        --## IC Testing ##--
+        -- eId Foreign Key
+        insert into worksOn values (1, 1234, '01-01-22', 5);
+        -- resId, day Foreign Key
+        insert into worksOn values (12, 1000, '01-02-21', 5);
+        -- w1 (checks if hours are below 0 or above 50)
+        insert into worksOn values (12, 1234, '01-01-22', -1);
         
     ---------------------------------------------------
   
