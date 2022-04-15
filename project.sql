@@ -214,9 +214,7 @@ SET FEEDBACK OFF
 
 SET FEEDBACK ON
 COMMIT;
---
-< One query (per table) of the form: SELECT * FROM table; in order to display your database >
---
+
 SELECT *
 FROM resident;
 
