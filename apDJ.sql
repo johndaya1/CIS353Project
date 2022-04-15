@@ -184,7 +184,11 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    insert into certification values (18, 'plumbing');
    insert into certification values (24, 'electrical');
    insert into certification values (30, 'electrical');
-	   
+   --## IC Testing ##--
+        -- c1 (check for a valid maintenance type)
+        insert into certification values (30, 'flooring');
+        -- eId Foreign Key
+        insert into certification values (36, 'electrical');	   
    --QUERY 1
    /* select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager*/
    SELECT e.name, e.eid
