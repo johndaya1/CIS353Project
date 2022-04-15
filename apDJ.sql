@@ -175,6 +175,12 @@ WHERE collegeYear > 1 AND
       r1.resId NOT IN (SELECT r2.resId
 		       FROM maintenanceRequest r2);
 	
-   --insert into apartmentUnit values
+  --Query 9
+  /*find the name, resident Id, and unit number of every resident. Also show their maintenance requests*/
+  SELECT DISTINCT r.name, r.resId, r.unitNum
+  FROM residents r
+  LEFT OUTER JOIN maintenanceRequests m
+  ON r.resId = m.resId
+  ORDER BY r.resId
     
     COMMIT;
