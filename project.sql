@@ -189,6 +189,14 @@ FROM certification;
 		     	   mr3.maintenanceType = 'electrical'
 		     ));
 		     
+  --Q9 - An Outer Join Query
+  --f=Select the name, resident Id, and unit number of every resident. Also show their maintenance request date
+  SELECT DISTINCT r.name, r.resId, r.unitNum, m.day
+  FROM resident r
+  LEFT OUTER JOIN maintenanceRequest m
+  ON r.resId = m.resId
+  ORDER BY r.resId;
+		     
 < The insert/delete/update statements to test the enforcement of ICs >
 Include the following items for every IC that you test (Important: see the next section titled
 “Submit a final report” regarding which ICs you need to test).
