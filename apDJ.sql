@@ -202,7 +202,55 @@ CREATE TABLE apartmentUnit    /*priscilla*/
         insert into worksOn values (12, 1234, '01-01-22', -1);
         
     ---------------------------------------------------
+  --QUERY 1
+   /* select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager*/
+   SELECT e.name, e.eid
+   FROM   employee e, maintenanceRequest m, worksOn w, certification c
+   WHERE e.eid = w.eid AND 
+	 c.cert = m.maintenanceType AND
+	 e.eid = c.eid AND
+	 e.mgrId = m.mgrId AND
+	 w.day = m.day
+  ORDER BY eid;
+	   
+  --QUERY 2
+  /*find pairs of students that are the same sex and 1 year apart in school. Get their name, sex, and current year*/
+  SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
+  FROM resident r1, resident r2
+  WHERE r1.sex = r2.sex AND
+  	r1.collegeYear = r2.collegeYear + 1 AND
+	(NOT r1.name = r2.name)
+  ORDER BY r1.collegeYear ASC;
   
+	   --QUERY 8
+  /*find the resId of every resident that has submitted a maintenance request that was electrical*/
+  SELECT DISTINCT mr1.resId
+  FROM maintenanceRequest mr1
+  WHERE NOT EXISTS ((SELECT mr2.maintenanceType
+		     FROM maintenanceRequest mr2
+		     WHERE maintenanceType = 'electrical')
+		    MINUS
+		    (SELECT maintenanceType 
+		     FROM maintenanceRequest mr3
+		     WHERE mr1.resID = mr3.resID AND
+		     	   mr3.maintenanceType = 'electrical'
+		     ));
+	   --QUERY 7
+/*Find the resId of every student that is past their 1st year and has not submitted a maintenance request*/	   
+SELECT DISTINCT r.resId
+FROM resident r
+WHERE collegeYear > 1 AND
+      r.resId NOT IN (SELECT m.resId
+		       FROM maintenanceRequest m);
+	
+  --Query 9
+  /*find the name, resident Id, and unit number of every resident. Also show their maintenance requests*/
+  SELECT DISTINCT r.name, r.resId, r.unitNum
+  FROM residents r
+  LEFT OUTER JOIN maintenanceRequests m
+  ON r.resId = m.resId
+  ORDER BY r.resId;
+    
 -- QUERY 3
 /*Find the resDd's and names of residents whose year is 3 and is a female.*/
 SELECT r.resId, r.name
@@ -217,3 +265,4 @@ WHERE sex = 'F';
 /* Select the highest paid employee from the employee table*/
 SELECT MAX(e.pay)
 FROM employee e;
+COMMIT;
