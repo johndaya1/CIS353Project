@@ -116,54 +116,56 @@ SET FEEDBACK OFF
 ----------------------------------------------------*/
    
    alter session set NLS_DATE_FORMAT = 'MM-DD-YY';
-    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
-    insert into resident values (1235, 02, 3, 'Jane Doe', 'F', 'Computer Science');
-    insert into resident values (1236, 03, 4, 'Beyonce Knowles', 'F', 'Computer Science');
-    insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
-    insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
-    insert into resident values (1239, 06, 1, 'Queen Elizabeth', 'F', 'Computer Science');
-    insert into resident values (1241, 11, 1, 'Chris Brown', 'M', 'Computer Science');
+   insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+   insert into resident values (1235, 02, 3, 'Jane Doe', 'F', 'Computer Science');
+   insert into resident values (1236, 03, 4, 'Beyonce Knowles', 'F', 'Computer Science');
+   insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
+   insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
+   insert into resident values (1239, 06, 1, 'Queen Elizabeth', 'F', 'Computer Science');
+   insert into resident values (1241, 11, 1, 'Chris Brown', 'M', 'Computer Science');
 
-    -------------------
+   -------------------
 
-    insert into apartmentUnit values(01, 'Style 1', 'great', 1500, 'not open');
-    insert into apartmentUnit values(02, 'Style 2', 'ok', 1200, 'not open');
-    insert into apartmentUnit values(03, 'Style 3', 'great', 1500, 'not open');
-    insert into apartmentUnit values(04, 'Style 4', 'perfect', 1700, 'not open');
-    insert into apartmentUnit values(05, 'Style 5', 'ok', 2000, 'not open');
-    insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
-    insert into apartmentUnit values(11, 'Style 1', 'great', 1500, 'not open');
+   insert into apartmentUnit values(01, 'Style 1', 'great', 1500, 'not open');
+   insert into apartmentUnit values(02, 'Style 2', 'ok', 1200, 'not open');
+   insert into apartmentUnit values(03, 'Style 3', 'great', 1500, 'not open');
+   insert into apartmentUnit values(04, 'Style 4', 'perfect', 1700, 'not open');
+   insert into apartmentUnit values(05, 'Style 5', 'ok', 2000, 'not open');
+   insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
+   insert into apartmentUnit values(11, 'Style 1', 'great', 1500, 'not open');
 
-    -------------------
+   -------------------
 
-    insert into buildingManager values(123, 'No', 'Bill', 55000);
-    insert into buildingManager values(124, 'Yes', 'Tammy', 55000);
+   insert into buildingManager values(123, 'No', 'Bill', 55000);
+   insert into buildingManager values(124, 'Yes', 'Tammy', 55000);
 
-    -------------------
+   -------------------
 
-    insert into employee values (12, 'Tom', 30000, 123);
-    insert into employee values (18, 'David', 30000, 123);
-    insert into employee values (24, 'John', 35000, 123);
-    insert into employee values (30, 'Guy', 55000, 124);
+   insert into employee values (12, 'Tom', 30000, 123);
+   insert into employee values (18, 'David', 30000, 123);
+   insert into employee values (24, 'John', 35000, 123);
+   insert into employee values (30, 'Guy', 55000, 124);
 
-    -------------------
+   -------------------
 
-    insert into maintenanceRequest values (1234, '01-01-22', 'electrical', 123);
-    insert into maintenanceRequest values (1234, '03-29-21', 'electrical', 124);
-    insert into maintenanceRequest values (1235, '03-05-22', 'plumbing', 124);
-    insert into maintenanceRequest values (1236, '02-07-21', 'furniture', 124);
+   insert into maintenanceRequest values (1234, '01-01-22', 'electrical', 123);
+   insert into maintenanceRequest values (1234, '03-29-21', 'electrical', 124);
+   insert into maintenanceRequest values (1235, '03-05-22', 'plumbing', 124);
+   insert into maintenanceRequest values (1236, '02-07-21', 'furniture', 124);
 
-    -------------------
+   -------------------
     
-    insert into certification values (12, 'electrical');
-    insert into certification values (18, 'plumbing');
-    insert into certification values (24, 'electrical');
-    insert into certification values (30, 'electrical');
+   insert into certification values (12, 'electrical');
+   insert into certification values (18, 'plumbing');
+   insert into certification values (24, 'electrical');
+   insert into certification values (30, 'electrical');
     
-    -------------------
+   -------------------
 
-    insert into worksOn values (12, 1234, '01-01-22', 5);
-
+   insert into worksOn values (12, 1234, '01-01-22', 5);
+   
+   -------------------
+   
 SET FEEDBACK ON
 COMMIT;
 
