@@ -131,14 +131,14 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
         --## IC Testing ##--
         -- a1
-        insert into apartmentUnit values(20, 'style 3', 'great', '1500', 'closed');
+        insert into apartmentUnit values(20, 'Style 3', 'great', 1500, 'closed');
         -- a2 
-        insert into apartmentUnit values(21, 'style 1', 'poor', '1500', 'open');
+        insert into apartmentUnit values(21, 'Style 1', 'poor', 1500, 'open');
         -- a3
-        insert into apartmentUnit values(22, 'style 12', 'great', '1500', 'not open');
+        insert into apartmentUnit values(22, 'Style 12', 'great', '1500', 'not open');
         -- a4
-        insert into apartmentUnit values(23, 'style 1', 'eh', '1500', 'not open');
-        insert into apartmentUnit values(24, 'style 1', 'eh', '1500', 'not open');
+        insert into apartmentUnit values(23, 'Style 1', 'eh', 1500, 'not open');
+        insert into apartmentUnit values(24, 'Style 1', 'eh', 1500, 'not open');
 
     -------------------
 
