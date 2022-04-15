@@ -2,14 +2,11 @@ SPOOL project.txt
 SET ECHO ON
 /*
 CIS 353 - Database Design Project
-<One line per team member name; in alphabetical order>
-Johnson, Dayaseh
+Johnson, Dasayeh
 Kleitch, Jack
 Ontiveros, Priscila
 Spears, Grant
 */
---< The SQL/DDL code that creates th schema >
---In the DDL, every IC must have a unique name; e.g. IC5, IC10, IC15, etc.
 
 DROP TABLE resident CASCADE CONSTRAINTS;
 DROP TABLE apartmentUnit CASCADE CONSTRAINTS;
@@ -19,7 +16,7 @@ DROP TABLE employee CASCADE CONSTRAINTS;
 DROP TABLE worksOn CASCADE CONSTRAINTS;
 DROP TABLE certification CASCADE CONSTRAINTS;
 
-----------
+------------------
 
 CREATE TABLE resident (         
   resID INTEGER PRIMARY KEY,
@@ -32,7 +29,9 @@ CREATE TABLE resident (
   CONSTRAINT r2 CHECK (major in('Computer Science')),
   CONSTRAINT r3 CHECK (NOT(collegeYear > 6))
  );
-  ------------------
+ 
+------------------
+
 CREATE TABLE apartmentUnit    
 (
   roomNum INTEGER PRIMARY KEY,
@@ -45,64 +44,75 @@ CREATE TABLE apartmentUnit
   CONSTRAINT a3 CHECK (style IN ('Style 1', 'Style 2', 'Style 3', 'Style 4','Style 5', 'Style 6')),
   CONSTRAINT a4 CHECK (condition IN ('poor', 'ok', 'great', 'perfect'))
  );
-   ------------------
-   CREATE TABLE buildingManager    
-  (
-    mgrId INTEGER PRIMARY KEY,
-    isLandlord CHAR(3) NOT NULL,
-    name CHAR(32) NOT NULL,
-    pay INTEGER NOT NULL
-    CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
-    CONSTRAINT bm2 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
-    CONSTRAINT bm3 CHECK (NOT (pay < 100000 AND isLandlord = 'yes'))
-   );
-   -------------------
- CREATE TABLE maintenanceRequest    
- (
-   resId INTEGER,
-   day DATE,
-   maintenanceType CHAR(15),
-   mgrId INTEGER,
-   PRIMARY KEY (resId, day),
-   FOREIGN KEY (resId) REFERENCES resident(resId),
-   FOREIGN KEY (mgrId) REFERENCES buildingManager(mgrId),
-   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
-  );
-   ---------------------
-   CREATE TABLE employee        
-   (
-     eId INTEGER PRIMARY KEY,
-     name CHAR(32) NOT NULL,
-     pay INTEGER,
-     mgrID INTEGER NOT NULL,
-     CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
-     CONSTRAINT e2 CHECK (NOT (pay > 55000) OR (pay < 25000))
-    );
-     ----------------
-   CREATE TABLE certification   
-   (
-     eId INTEGER,
-     cert CHAR(15),
-     FOREIGN KEY (eId) REFERENCES employee(eId),
-     CONSTRAINT c1 CHECK (cert IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
-    );
-     ----------------
-    CREATE TABLE worksOn      
-    (
-      eId INTEGER,
-      resId INTEGER,
-      day DATE,
-      hours INTEGER,
-      FOREIGN KEY (eId) REFERENCES employee(eId),
-      FOREIGN KEY (resId, day) REFERENCES maintenanceRequest(resId, day),
-      PRIMARY KEY(resId, day),
-      CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50));
-     );
+ 
+------------------
+ 
+CREATE TABLE buildingManager    
+(
+  mgrId INTEGER PRIMARY KEY,
+  isLandlord CHAR(3) NOT NULL,
+  name CHAR(32) NOT NULL,
+  pay INTEGER NOT NULL
+  CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
+  CONSTRAINT bm2 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
+  CONSTRAINT bm3 CHECK (NOT (pay < 100000 AND isLandlord = 'yes'))
+);
+
+------------------
+
+CREATE TABLE maintenanceRequest    
+(
+  resId INTEGER,
+  day DATE,
+  maintenanceType CHAR(15),
+  mgrId INTEGER,
+  PRIMARY KEY (resId, day),
+  FOREIGN KEY (resId) REFERENCES resident(resId),
+  FOREIGN KEY (mgrId) REFERENCES buildingManager(mgrId),
+  CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
+);
+
+------------------
+   
+CREATE TABLE employee        
+(
+  eId INTEGER PRIMARY KEY,
+  name CHAR(32) NOT NULL,
+  pay INTEGER,
+  mgrID INTEGER NOT NULL,
+  CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
+  CONSTRAINT e2 CHECK (NOT (pay > 55000) OR (pay < 25000))
+);
+    
+------------------
+     
+CREATE TABLE certification   
+(
+  eId INTEGER,
+  cert CHAR(15),
+  FOREIGN KEY (eId) REFERENCES employee(eId),
+  CONSTRAINT c1 CHECK (cert IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
+);
+    
+------------------
+     
+CREATE TABLE worksOn      
+(
+  eId INTEGER,
+  resId INTEGER,
+  day DATE,
+  hours INTEGER,
+  FOREIGN KEY (eId) REFERENCES employee(eId),
+  FOREIGN KEY (resId, day) REFERENCES maintenanceRequest(resId, day),
+  PRIMARY KEY(resId, day),
+  CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50));
+);
+     
 --
 SET FEEDBACK OFF
-< The INSERT statements that populate the tables>
-Important: Keep the number of rows in each table small enough so that the results of your
-queries can be verified by hand. See the Sailors database as an example.
+
+
+
 SET FEEDBACK ON
 COMMIT;
 --
@@ -129,8 +139,8 @@ FROM worksOn;
 SELECT *
 FROM certification;
 --
---< The SQL queries>
---
+
+
 --Q1 - A Join involving 4 relations
 --Select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager
    SELECT e.name, e.eid
