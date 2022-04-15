@@ -25,6 +25,9 @@ CREATE TABLE resident (         /* Priscilla*/
   name CHAR(50) NOT NULL,
   SEX CHAR(1) NOT NULL,
   major CHAR(30)
+  CONSTRAINT r1 CHECK (sex in ('M', 'F')),
+  CONSTRAINT r2 CHECK (major in('Computer Science')),
+  CONSTRAINT r3 CHECK (NOT(collegeYear > 6))
  );
   
   ------------------
@@ -72,7 +75,6 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      name CHAR(32) NOT NULL,
      pay INTEGER,
      mgrID INTEGER NOT NULL,
-     /*TO DO: INSERT CONTRAINTS*/
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
      CONSTRAINT e2 CHECK (NOT (pay > 55000)),
      CONSTRAINT e3 CHECK (NOT (pay < 25000))
@@ -83,7 +85,6 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      eId INTEGER,
      cert CHAR(15),
      FOREIGN KEY (eId) REFERENCES employee(eId),
-     /*TO DO: INSERT CONSTRAINTS*/
      CONSTRAINT c1 CHECK (cert IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
     );
      
@@ -140,11 +141,11 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 	 c.cert = m.maintenanceType AND
 	 e.eid = c.eid AND
 	 e.mgrId = m.mgrId AND
-	 w.requestId = m.requestId
+	 w.day = m.day
   ORDER BY eid;
 	   
   --QUERY 2
-  /*select find pairs of students that are the same sex and 1 year apart in school. select the name, sex, and current year*/
+  /*find pairs of students that are the same sex and 1 year apart in school. Get their name, sex, and current year*/
   SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
   FROM resident r1, resident r2
   WHERE r1.sex = r2.sex AND
@@ -153,7 +154,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   ORDER BY r1.collegeYear ASC;
   
 	   --QUERY 8
-  /*find the resId every resident that has submitted a maintenance request that was electrical*/
+  /*find the resId of every resident that has submitted a maintenance request that was electrical*/
   SELECT DISTINCT mr1.resId
   FROM maintenanceRequest mr1
   WHERE NOT EXISTS ((SELECT mr2.maintenanceType
