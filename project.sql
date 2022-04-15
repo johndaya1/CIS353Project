@@ -117,13 +117,13 @@ SET FEEDBACK OFF
    
    
    
-   insert into apartmentUnit values(01, 'Style 1', 'great', 1500, 'not open');
+   insert into apartmentUnit values(01, 'Style 1', 'great', 1000, 'not open');
    insert into apartmentUnit values(02, 'Style 2', 'ok', 1200, 'not open');
    insert into apartmentUnit values(03, 'Style 3', 'great', 1500, 'not open');
    insert into apartmentUnit values(04, 'Style 4', 'perfect', 1700, 'not open');
    insert into apartmentUnit values(05, 'Style 5', 'ok', 2000, 'not open');
    insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
-   insert into apartmentUnit values(11, 'Style 1', 'great', 1600, 'not open');
+   insert into apartmentUnit values(11, 'Style 1', 'great', 1000, 'not open');
    
    ---------------------------------------------
    
