@@ -206,6 +206,9 @@ SQL>
 SQL> 	-------------------
 SQL> 
 SQL> 	insert into worksOn values (12, 1234, '01-01-22', 5);
+SQL> 	insert into worksOn values (12, 1234, '03-29-21', 1);
+SQL> 	insert into worksOn values (18, 1235, '03-05-22', 6);
+SQL> 	insert into worksOn values (30, 1236, '02-07-21', 5);
 SQL> 
 SQL> 	-------------------
 SQL> 
@@ -336,8 +339,11 @@ SQL> SELECT *
        EID      RESID DAY           HOURS                                       
 ---------- ---------- -------- ----------                                       
         12       1234 01-01-22          5                                       
+        12       1234 03-29-21          1                                       
+        18       1235 03-05-22          6                                       
+        30       1236 02-07-21          5                                       
 
-1 row selected.
+4 rows selected.
 
 SQL> 
 SQL> SELECT *
@@ -515,7 +521,7 @@ SQL>   SELECT DISTINCT mr1.resId
 
 SQL> 
 SQL>   --Q9 - An Outer Join Query
-SQL>   --f=Select the name, resident Id, and unit number of every resident. Also show their maintenance request date
+SQL>   --Select the name, resident Id, and unit number of every resident. Also show their maintenance request date
 SQL>   SELECT DISTINCT r.name, r.resId, r.unitNum, m.day
   2    FROM resident r
   3    LEFT OUTER JOIN maintenanceRequest m
@@ -688,7 +694,7 @@ SQL> insert into maintenanceRequest values (1000, '01-01-22', 'furniture', 124);
 insert into maintenanceRequest values (1000, '01-01-22', 'furniture', 124)
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086165) violated - parent key 
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086287) violated - parent key 
 not found 
 
 
@@ -697,7 +703,7 @@ SQL> insert into maintenanceRequest values (1235, '01-01-22', 'furniture', 100);
 insert into maintenanceRequest values (1235, '01-01-22', 'furniture', 100)
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086166) violated - parent key 
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086288) violated - parent key 
 not found 
 
 
@@ -715,7 +721,7 @@ SQL> insert into certification values (36, 'electrical');
 insert into certification values (36, 'electrical')
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086173) violated - parent key 
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086295) violated - parent key 
 not found 
 
 
@@ -725,7 +731,7 @@ SQL> insert into worksOn values (1, 1234, '01-01-22', 5);
 insert into worksOn values (1, 1234, '01-01-22', 5)
 *
 ERROR at line 1:
-ORA-00001: unique constraint (JOHNDAYA.SYS_C0086175) violated 
+ORA-00001: unique constraint (JOHNDAYA.SYS_C0086297) violated 
 
 
 SQL> -- Testing resId, day Foreign Key
@@ -733,7 +739,7 @@ SQL> insert into worksOn values (12, 1000, '01-02-21', 5);
 insert into worksOn values (12, 1000, '01-02-21', 5)
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086177) violated - parent key 
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086299) violated - parent key 
 not found 
 
 
