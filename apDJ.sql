@@ -127,17 +127,17 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     insert into apartmentUnit values(02, 'style 2', 'ok', 1200, 'not open');
     insert into apartmentUnit values(03, 'style 3', 'great', 1500, 'not open');
     insert into apartmentUnit values(04, 'style 4', 'perfect', 1700, 'not open');
-    insert into apartmentUnit values(05, 'style 5', 'ok', '2000', 'not open');
-    insert into apartmentUnit values(06, 'style 6', 'great', '2200', 'not open');
+    insert into apartmentUnit values(05, 'style 5', 'ok', 2000, 'not open');
+    insert into apartmentUnit values(06, 'style 6', 'great', 2000, 'not open');
     --testing a1
-    insert into apartmentUnit values(20, 'style 3', 'great', '1500', 'closed');
+    insert into apartmentUnit values(20, 'style 3', 'great', 1500, 'closed');
     --testing a2 
-    insert into apartmentUnit values(21, 'style 1', 'poor', '1500', 'open');
+    insert into apartmentUnit values(21, 'style 1', 'poor', 1500, 'open');
     --testing a3
-    insert into apartmentUnit values(22, 'style 12', 'great', '1500', 'not open');
+    insert into apartmentUnit values(22, 'style 12', 'great', 1500, 'not open');
     --testing a4
-    insert into apartmentUnit values(23, 'style 1', 'eh', '1500', 'not open');
-    insert into apartmentUnit values(24, 'style 1', 'eh', '1500', 'not open');
+    insert into apartmentUnit values(23, 'style 1', 'eh', 1500, 'not open');
+    insert into apartmentUnit values(24, 'style 1', 'eh', 1500, 'not open');
 -----------------------------------------------------------------------------------------------------------------------------------
    insert into buildingManager values(123, 'No', 'Bill', 55000);
    insert into buildingManager values(124, 'No', 'Tammy', 55000);
