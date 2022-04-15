@@ -150,7 +150,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
         -- bm2 (Landlord value constraint)
         insert into buildingManager values(999, '??', 'Bob', 55000);
         -- bm3 (is NOT a Landlord and pay is higher than or equal to 80000)
-        insert into buildingManager values(999, 'No', 'Bob', 10000);
+        insert into buildingManager values(999, 'Yes', 'Bob', 60000);
 
     -------------------
 
