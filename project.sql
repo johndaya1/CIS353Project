@@ -167,12 +167,11 @@ FROM certification;
   
   --Q5 - A GROUP BY, HAVING, and ORDER BY
   --Find the residents who are freshmen (college year = 1)
-  SELECT
-  r.name,r.resID, count(*)
+  SELECT r.name,r.resId, r.sex, count(*)
   FROM resident r
   WHERE r.collegeYear = 1
-  GROUP BY r.name,r.resID
-  HAVING count(*) > 1
+  GROUP BY r.name, r.resId, r.sex
+  HAVING count(*) >= 1
   ORDER BY r.collegeYear;
   
   --Q6 - A correlated subquery
