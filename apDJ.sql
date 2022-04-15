@@ -64,7 +64,6 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    PRIMARY KEY (resId, day),
    FOREIGN KEY (resId) REFERENCES resident(resId),
    FOREIGN KEY (mgrId) REFERENCES buildingManager(mgrId),
-  /*TO DO: INSERT CONSTRAINTS*/
    CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
   );
    ---------------------
@@ -76,8 +75,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      pay INTEGER,
      mgrID INTEGER NOT NULL,
      CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
-     CONSTRAINT e2 CHECK (NOT (pay > 55000)),
-     CONSTRAINT e3 CHECK (NOT (pay < 25000))
+     CONSTRAINT e2 CHECK (NOT (pay > 55000) OR (pay < 25000))
     );
      ----------------
    CREATE TABLE certification   /*DJ*/
@@ -97,7 +95,8 @@ CREATE TABLE apartmentUnit    /*priscilla*/
       hours INTEGER,
       FOREIGN KEY (eId) REFERENCES employee(eId),
       FOREIGN KEY (resId, day) REFERENCES maintenanceRequest(resId, day),
-      PRIMARY KEY(resId, day)
+      PRIMARY KEY(resId, day),
+      CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50));
      );
     
    /*--------------------------------------------------       Jack
