@@ -105,7 +105,7 @@ CREATE TABLE worksOn
   FOREIGN KEY (eId) REFERENCES employee(eId),
   FOREIGN KEY (resId, day) REFERENCES maintenanceRequest(resId, day),
   PRIMARY KEY(resId, day),
-  CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50));
+  CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50))
 );
      
 --
