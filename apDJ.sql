@@ -114,6 +114,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
     insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
     insert into resident values (1239, 06, 1, 'Queen Elizabeth', 'F', 'Computer Science');
+    insert into resident values (1239, 06, 1, 'Chris Brown', 'M', 'Computer Science');
         --## IC Testing ##--
         -- r1 (Gender constraint)
         insert into resident values (0001, 10, 1, 'Mike Mike', 'm', 'Computer Science');
@@ -130,6 +131,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     insert into apartmentUnit values(04, 'Style 4', 'perfect', 1700, 'not open');
     insert into apartmentUnit values(05, 'Style 5', 'ok', 2000, 'not open');
     insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
+    insert into apartmentUnit values(11, 'Style 1', 'great', 1500, 'not open');
         --## IC Testing ##--
         -- a1
         insert into apartmentUnit values(20, 'Style 3', 'great', 1500, 'closed');
@@ -271,7 +273,7 @@ FROM employee e;
 SELECT r.name,r.resID, count(*)
   FROM resident r
   WHERE r.collegeYear = 1
-  GROUP BY r.name, r.resId
+  GROUP BY r.sex
   HAVING count(*) >= 1
   ORDER BY r.collegeYear;
 COMMIT;
