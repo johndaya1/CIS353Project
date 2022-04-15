@@ -52,10 +52,9 @@ CREATE TABLE apartmentUnit
     isLandlord CHAR(3) NOT NULL,
     name CHAR(32) NOT NULL,
     pay INTEGER NOT NULL
-    /*TO DO: INSERT CONSTRAINTS*/
     CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
-    CONSTRAINT bm3 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
-    CONSTRAINT bm4 CHECK (NOT (pay < 100000 AND isLandlord = 'yes'))
+    CONSTRAINT bm2 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
+    CONSTRAINT bm3 CHECK (NOT (pay < 100000 AND isLandlord = 'yes'))
    );
    -------------------
  CREATE TABLE maintenanceRequest    
