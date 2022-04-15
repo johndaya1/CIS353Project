@@ -3,7 +3,10 @@ SET ECHO ON
 /*
 CIS 353 - Database Design Project
 <One line per team member name; in alphabetical order>
-Dayaseh Johnson
+Johnson, Dasayeh
+Kleitch, Jack
+Ontiveros, Priscila
+Spears, Grant
 */
 --< The SQL/DDL code that creates your schema >
 --In the DDL, every IC must have a unique name; e.g. IC5, IC10, IC15, etc.
@@ -18,7 +21,7 @@ DROP TABLE certification CASCADE CONSTRAINTS;
 
 ----------
 
-CREATE TABLE resident (         /* Priscilla*/
+CREATE TABLE resident (         
   resID INTEGER PRIMARY KEY,
   unitNum INTEGER NOT NULL,
   collegeYear INTEGER NOT NULL,
@@ -29,10 +32,8 @@ CREATE TABLE resident (         /* Priscilla*/
   CONSTRAINT r2 CHECK (major in('Computer Science')),
   CONSTRAINT r3 CHECK (NOT(collegeYear > 6))
  );
-  
   ------------------
-  
-CREATE TABLE apartmentUnit    /*priscilla*/
+CREATE TABLE apartmentUnit    
 (
   roomNum INTEGER PRIMARY KEY,
   style CHAR(12) NOT NULL,
@@ -45,7 +46,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   CONSTRAINT a4 CHECK (condition IN ('poor', 'ok', 'great', 'perfect'))
  );
    ------------------
-   CREATE TABLE buildingManager    /*Grant*/
+   CREATE TABLE buildingManager    
   (
     mgrId INTEGER PRIMARY KEY,
     isLandlord CHAR(3) NOT NULL,
@@ -57,7 +58,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     CONSTRAINT bm4 CHECK (NOT (pay < 100000 AND isLandlord = 'yes'))
    );
    -------------------
- CREATE TABLE maintenanceRequest    /*Grant*/
+ CREATE TABLE maintenanceRequest    
  (
    resId INTEGER,
    day DATE,
@@ -69,8 +70,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
    CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
   );
    ---------------------
-    -------------------
-   CREATE TABLE employee        /*DJ*/
+   CREATE TABLE employee        
    (
      eId INTEGER PRIMARY KEY,
      name CHAR(32) NOT NULL,
@@ -80,16 +80,15 @@ CREATE TABLE apartmentUnit    /*priscilla*/
      CONSTRAINT e2 CHECK (NOT (pay > 55000) OR (pay < 25000))
     );
      ----------------
-   CREATE TABLE certification   /*DJ*/
+   CREATE TABLE certification   
    (
      eId INTEGER,
      cert CHAR(15),
      FOREIGN KEY (eId) REFERENCES employee(eId),
      CONSTRAINT c1 CHECK (cert IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
     );
-     
      ----------------
-    CREATE TABLE worksOn      /*Jack*/
+    CREATE TABLE worksOn      
     (
       eId INTEGER,
       resId INTEGER,
@@ -142,7 +141,6 @@ FROM certification;
 	 e.mgrId = m.mgrId AND
 	 w.day = m.day
   ORDER BY eid;
-  
   --Q2 - A self-join
   --Find pairs of students that are the same sex and 1 year apart in school. Select their name, sex, and current year
   SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
@@ -151,7 +149,6 @@ FROM certification;
   	r1.collegeYear = r2.collegeYear + 1 AND
 	(NOT r1.name = r2.name)
   ORDER BY r1.collegeYear ASC;
-
   --Q5 - A GROUP BY, HAVING, and ORDER BY
   --Find the residents who are freshmen (college year = 1)
   SELECT
@@ -178,8 +175,7 @@ FROM certification;
   FROM resident r
   WHERE collegeYear > 1 AND
       r.resId NOT IN (SELECT m.resId
-		       FROM maintenanceRequest m);
-		       
+		       FROM maintenanceRequest m);	       
   --Q8 - A relational division query
   --Select the resId of every resident that has submitted a maintenance request that was electrical
   SELECT DISTINCT mr1.resId
