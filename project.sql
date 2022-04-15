@@ -81,7 +81,7 @@ CREATE TABLE employee
   pay INTEGER,
   mgrID INTEGER NOT NULL,
   CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
-  CONSTRAINT e2 CHECK (NOT (pay > 55000) OR (pay < 25000))
+  CONSTRAINT e2 CHECK (NOT ((pay > 55000) OR (pay < 25000)))
 );
     
 ------------------
@@ -311,7 +311,7 @@ insert into buildingManager values(999, 'yes', 'Bob', 60000);
 -- Testing e1
 insert into employee values (36, 'Timothy', 30000, 36);
 -- Testing e2
-insert into employee values (36, 'Timothy', 1000000, 123);
+insert into employee values (36, 'Timothy', 10000, 123);
 
 -- Testing m1
 insert into maintenanceRequest values (1235, '02-04-22', 'flooring', 124);
