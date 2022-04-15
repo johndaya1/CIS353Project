@@ -169,11 +169,11 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 		     ));
 	   --QUERY 7
 /*Find the resId of every student that is past their 1st year and has not submitted a maintenance request*/	   
-SELECT DISTINCT r1.resId
-FROM resident r1
+SELECT DISTINCT r.resId
+FROM resident r
 WHERE collegeYear > 1 AND
-      r1.resId NOT IN (SELECT r2.resId
-		       FROM maintenanceRequest r2);
+      r.resId NOT IN (SELECT m.resId
+		       FROM maintenanceRequest m);
 	
   --Query 9
   /*find the name, resident Id, and unit number of every resident. Also show their maintenance requests*/
