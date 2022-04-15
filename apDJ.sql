@@ -114,7 +114,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
     insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
     insert into resident values (1239, 06, 1, 'Queen Elizabeth', 'F', 'Computer Science');
-    insert into resident values (1239, 06, 1, 'Chris Brown', 'M', 'Computer Science');
+    insert into resident values (1241, 06, 1, 'Chris Brown', 'M', 'Computer Science');
         --## IC Testing ##--
         -- r1 (Gender constraint)
         insert into resident values (0001, 10, 1, 'Mike Mike', 'm', 'Computer Science');
