@@ -156,8 +156,6 @@ SQL> /*--------------------------------------------------
 > 		   Populate Database
 SQL> ----------------------------------------------------*/
 SQL> 
-SQL> 
-SQL> 
 SQL> 	insert into apartmentUnit values(01, 'Style 1', 'great', 1000, 'not open');
 SQL> 	insert into apartmentUnit values(02, 'Style 2', 'ok', 1200, 'not open');
 SQL> 	insert into apartmentUnit values(03, 'Style 3', 'great', 1500, 'not open');
@@ -166,9 +164,8 @@ SQL> 	insert into apartmentUnit values(05, 'Style 5', 'ok', 2000, 'not open');
 SQL> 	insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
 SQL> 	insert into apartmentUnit values(11, 'Style 1', 'great', 1000, 'not open');
 SQL> 
-SQL> 	---------------------------------------------
+SQL> 	-------------------
 SQL> 
-SQL> 	alter session set NLS_DATE_FORMAT = 'MM-DD-YY';
 SQL> 	insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
 SQL> 	insert into resident values (1235, 02, 3, 'Jane Doe', 'F', 'Computer Science');
 SQL> 	insert into resident values (1236, 03, 4, 'Beyonce Knowles', 'F', 'Computer Science');
@@ -694,7 +691,7 @@ SQL> insert into maintenanceRequest values (1000, '01-01-22', 'furniture', 124);
 insert into maintenanceRequest values (1000, '01-01-22', 'furniture', 124)
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086287) violated - parent key 
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086452) violated - parent key 
 not found 
 
 
@@ -703,7 +700,7 @@ SQL> insert into maintenanceRequest values (1235, '01-01-22', 'furniture', 100);
 insert into maintenanceRequest values (1235, '01-01-22', 'furniture', 100)
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086288) violated - parent key 
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086453) violated - parent key 
 not found 
 
 
@@ -721,7 +718,7 @@ SQL> insert into certification values (36, 'electrical');
 insert into certification values (36, 'electrical')
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086295) violated - parent key 
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086460) violated - parent key 
 not found 
 
 
@@ -731,7 +728,7 @@ SQL> insert into worksOn values (1, 1234, '01-01-22', 5);
 insert into worksOn values (1, 1234, '01-01-22', 5)
 *
 ERROR at line 1:
-ORA-00001: unique constraint (JOHNDAYA.SYS_C0086297) violated 
+ORA-00001: unique constraint (JOHNDAYA.SYS_C0086462) violated 
 
 
 SQL> -- Testing resId, day Foreign Key
@@ -739,7 +736,7 @@ SQL> insert into worksOn values (12, 1000, '01-02-21', 5);
 insert into worksOn values (12, 1000, '01-02-21', 5)
 *
 ERROR at line 1:
-ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086299) violated - parent key 
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0086464) violated - parent key 
 not found 
 
 
