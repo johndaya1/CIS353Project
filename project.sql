@@ -114,6 +114,7 @@ SET FEEDBACK OFF
 /*--------------------------------------------------
   		 Populate Database
 ----------------------------------------------------*/
+   alter session set NLS_DATE_FORMAT = 'MM-DD-YY';
    
    insert into apartmentUnit values(01, 'Style 1', 'great', 1000, 'not open');
    insert into apartmentUnit values(02, 'Style 2', 'ok', 1200, 'not open');
