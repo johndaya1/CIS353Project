@@ -178,7 +178,7 @@ SELECT *
 FROM apartmentUnit;
 
 SELECT *
-FROM maintenance;
+FROM maintenanceRequest;
 
 SELECT *
 FROM buildingManager;
