@@ -40,7 +40,9 @@ CREATE TABLE apartmentUnit    /*priscilla*/
   price INTEGER NOT NULL,
   availability CHAR(12) NOT NULL,
   CONSTRAINT a1 CHECK (availability IN ('open', 'not open')),
-  CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open'))
+  CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open')),
+  CONSTRAINT a3 CHECK (style IN ('Style 1', 'Style 2', 'Style 3', 'Style 4','Style 5', 'Style 6')),
+  CONSTRAINT a4 CHECK (condition IN ('poor', 'ok', 'great', 'perfect'))
  );
    ------------------
    CREATE TABLE buildingManager    /*Grant*/
@@ -52,7 +54,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     /*TO DO: INSERT CONSTRAINTS*/
     CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
     CONSTRAINT bm3 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
-    CONSTRAINT bm4 CHECK (NOT (pay < 80000 AND isLandlord = 'yes'))
+    CONSTRAINT bm4 CHECK (NOT (pay < 100000 AND isLandlord = 'yes'))
    );
    -------------------
  CREATE TABLE maintenanceRequest    /*Grant*/
