@@ -3,9 +3,103 @@ SET ECHO ON
 /*
 CIS 353 - Database Design Project
 <One line per team member name; in alphabetical order>
+Dayaseh Johnson
 */
-< The SQL/DDL code that creates your schema >
-In the DDL, every IC must have a unique name; e.g. IC5, IC10, IC15, etc.
+--< The SQL/DDL code that creates your schema >
+--In the DDL, every IC must have a unique name; e.g. IC5, IC10, IC15, etc.
+
+DROP TABLE resident CASCADE CONSTRAINTS;
+DROP TABLE apartmentUnit CASCADE CONSTRAINTS;
+DROP TABLE maintenanceRequest CASCADE CONSTRAINTS;
+DROP TABLE buildingManager CASCADE CONSTRAINTS;
+DROP TABLE employee CASCADE CONSTRAINTS;
+DROP TABLE worksOn CASCADE CONSTRAINTS;
+DROP TABLE certification CASCADE CONSTRAINTS;
+
+----------
+
+CREATE TABLE resident (         /* Priscilla*/
+  resID INTEGER PRIMARY KEY,
+  unitNum INTEGER NOT NULL,
+  collegeYear INTEGER NOT NULL,
+  name CHAR(50) NOT NULL,
+  sex CHAR(1) NOT NULL,
+  major CHAR(30),
+  CONSTRAINT r1 CHECK (sex in ('M', 'F')),
+  CONSTRAINT r2 CHECK (major in('Computer Science')),
+  CONSTRAINT r3 CHECK (NOT(collegeYear > 6))
+ );
+  
+  ------------------
+  
+CREATE TABLE apartmentUnit    /*priscilla*/
+(
+  roomNum INTEGER PRIMARY KEY,
+  style CHAR(12) NOT NULL,
+  condition CHAR(12) NOT NULL,
+  price INTEGER NOT NULL,
+  availability CHAR(12) NOT NULL,
+  CONSTRAINT a1 CHECK (availability IN ('open', 'not open')),
+  CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open')),
+  CONSTRAINT a3 CHECK (style IN ('Style 1', 'Style 2', 'Style 3', 'Style 4','Style 5', 'Style 6')),
+  CONSTRAINT a4 CHECK (condition IN ('poor', 'ok', 'great', 'perfect'))
+ );
+   ------------------
+   CREATE TABLE buildingManager    /*Grant*/
+  (
+    mgrId INTEGER PRIMARY KEY,
+    isLandlord CHAR(3) NOT NULL,
+    name CHAR(32) NOT NULL,
+    pay INTEGER NOT NULL
+    /*TO DO: INSERT CONSTRAINTS*/
+    CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
+    CONSTRAINT bm3 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
+    CONSTRAINT bm4 CHECK (NOT (pay < 100000 AND isLandlord = 'yes'))
+   );
+   -------------------
+ CREATE TABLE maintenanceRequest    /*Grant*/
+ (
+   resId INTEGER,
+   day DATE,
+   maintenanceType CHAR(15),
+   mgrId INTEGER,
+   PRIMARY KEY (resId, day),
+   FOREIGN KEY (resId) REFERENCES resident(resId),
+   FOREIGN KEY (mgrId) REFERENCES buildingManager(mgrId),
+   CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
+  );
+   ---------------------
+    -------------------
+   CREATE TABLE employee        /*DJ*/
+   (
+     eId INTEGER PRIMARY KEY,
+     name CHAR(32) NOT NULL,
+     pay INTEGER,
+     mgrID INTEGER NOT NULL,
+     CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
+     CONSTRAINT e2 CHECK (NOT (pay > 55000) OR (pay < 25000))
+    );
+     ----------------
+   CREATE TABLE certification   /*DJ*/
+   (
+     eId INTEGER,
+     cert CHAR(15),
+     FOREIGN KEY (eId) REFERENCES employee(eId),
+     CONSTRAINT c1 CHECK (cert IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
+    );
+     
+     ----------------
+    CREATE TABLE worksOn      /*Jack*/
+    (
+      eId INTEGER,
+      resId INTEGER,
+      day DATE,
+      hours INTEGER,
+      FOREIGN KEY (eId) REFERENCES employee(eId),
+      FOREIGN KEY (resId, day) REFERENCES maintenanceRequest(resId, day),
+      PRIMARY KEY(resId, day),
+      CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50));
+     );
 --
 SET FEEDBACK OFF
 < The INSERT statements that populate the tables>
