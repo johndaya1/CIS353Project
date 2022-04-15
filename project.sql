@@ -8,7 +8,7 @@ Kleitch, Jack
 Ontiveros, Priscila
 Spears, Grant
 */
---< The SQL/DDL code that creates your schema >
+--< The SQL/DDL code that creates th schema >
 --In the DDL, every IC must have a unique name; e.g. IC5, IC10, IC15, etc.
 
 DROP TABLE resident CASCADE CONSTRAINTS;
@@ -130,6 +130,7 @@ SELECT *
 FROM certification;
 --
 --< The SQL queries>
+--
 --Q1 - A Join involving 4 relations
 --Select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager
    SELECT e.name, e.eid
