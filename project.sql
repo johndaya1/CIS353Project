@@ -23,7 +23,7 @@ DROP TABLE certification CASCADE CONSTRAINTS;
 
 CREATE TABLE resident (         
   resID INTEGER PRIMARY KEY,
-  unitNum INTEGER NOT NULL,
+  unitNum INTEGER UNIQUE,
   collegeYear INTEGER NOT NULL,
   name CHAR(50) NOT NULL,
   sex CHAR(1) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE apartmentUnit
   roomNum INTEGER PRIMARY KEY,
   style CHAR(12) NOT NULL,
   condition CHAR(12) NOT NULL,
-  price INTEGER NOT NULL,
+  price INTEGER UNIQUE,
   availability CHAR(12) NOT NULL,
   CONSTRAINT a1 CHECK (availability IN ('open', 'not open')),
   CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open')),
