@@ -122,7 +122,7 @@ SET FEEDBACK OFF
     insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
     insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
     insert into resident values (1239, 06, 1, 'Queen Elizabeth', 'F', 'Computer Science');
-    insert into resident values (1241, 06, 1, 'Chris Brown', 'M', 'Computer Science');
+    insert into resident values (1241, 11, 1, 'Chris Brown', 'M', 'Computer Science');
 
     -------------------
 
