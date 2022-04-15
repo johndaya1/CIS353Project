@@ -39,8 +39,7 @@ FROM certification;
 --
 --< The SQL queries>
 --Q1 - A Join involving 4 relations
---select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager
- 
+--Select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager
    SELECT e.name, e.eid
    FROM   employee e, maintenanceRequest m, worksOn w, certification c
    WHERE e.eid = w.eid AND 
@@ -49,6 +48,38 @@ FROM certification;
 	 e.mgrId = m.mgrId AND
 	 w.day = m.day
   ORDER BY eid;
+  
+  --Q2 - A self-join
+  --Find pairs of students that are the same sex and 1 year apart in school. Select their name, sex, and current year
+  SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
+  FROM resident r1, resident r2
+  WHERE r1.sex = r2.sex AND
+  	r1.collegeYear = r2.collegeYear + 1 AND
+	(NOT r1.name = r2.name)
+  ORDER BY r1.collegeYear ASC;
+  
+  --Q7 - A non-correlated subquery
+  --Find the resId of every student that is past their 1st year and has not submitted a maintenance request
+  SELECT DISTINCT r.resId
+  FROM resident r
+  WHERE collegeYear > 1 AND
+      r.resId NOT IN (SELECT m.resId
+		       FROM maintenanceRequest m);
+		       
+  --Q8 - A relational division query
+  --Select the resId of every resident that has submitted a maintenance request that was electrical
+  SELECT DISTINCT mr1.resId
+  FROM maintenanceRequest mr1
+  WHERE NOT EXISTS ((SELECT mr2.maintenanceType
+		     FROM maintenanceRequest mr2
+		     WHERE maintenanceType = 'electrical')
+		    MINUS
+		    (SELECT maintenanceType 
+		     FROM maintenanceRequest mr3
+		     WHERE mr1.resID = mr3.resID AND
+		     	   mr3.maintenanceType = 'electrical'
+		     ));
+		     
 < The insert/delete/update statements to test the enforcement of ICs >
 Include the following items for every IC that you test (Important: see the next section titled
 “Submit a final report” regarding which ICs you need to test).
