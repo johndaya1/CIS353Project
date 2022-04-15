@@ -53,7 +53,7 @@ CREATE TABLE buildingManager
   isLandlord CHAR(3) NOT NULL,
   name CHAR(32) NOT NULL,
   pay INTEGER NOT NULL
-  CONSTRAINT bm1 CHECK (NOT ((pay < 55000) OR (pay > 100000))),
+  CONSTRAINT bm1 CHECK (NOT (pay < 55000 OR pay > 100000)),
   CONSTRAINT bm2 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
   CONSTRAINT bm3 CHECK (NOT (pay < 100000 AND isLandlord = 'yes'))
 );
@@ -81,7 +81,7 @@ CREATE TABLE employee
   pay INTEGER,
   mgrID INTEGER NOT NULL,
   CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
-  CONSTRAINT e2 CHECK (NOT ((pay > 55000) OR (pay < 25000)))
+  CONSTRAINT e2 CHECK (NOT (pay > 55000 OR pay < 25000))
 );
     
 ------------------
