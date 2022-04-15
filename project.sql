@@ -111,7 +111,106 @@ CREATE TABLE worksOn
 --
 SET FEEDBACK OFF
 
+/*--------------------------------------------------
+  		 Populate Database
+----------------------------------------------------*/
+   
+   alter session set NLS_DATE_FORMAT = 'MM-DD-YY';
+    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+    insert into resident values (1235, 02, 3, 'Jane Doe', 'F', 'Computer Science');
+    insert into resident values (1236, 03, 4, 'Beyonce Knowles', 'F', 'Computer Science');
+    insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
+    insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
+    insert into resident values (1239, 06, 1, 'Queen Elizabeth', 'F', 'Computer Science');
+    insert into resident values (1241, 06, 1, 'Chris Brown', 'M', 'Computer Science');
+        --## IC Testing ##--
+        -- r1 (Gender constraint)
+        insert into resident values (0001, 10, 1, 'Mike Mike', 'm', 'Computer Science');
+        -- r2 (Major constraint)
+        insert into resident values (0001, 10, 1, 'Mike Mike', 'M', 'Business');
+        -- r3 (collegeYear cannot be more than 6)
+        insert into resident values (0001, 10, 7, 'Mike Mike', 'M', 'Business');
 
+    -------------------
+
+    insert into apartmentUnit values(01, 'Style 1', 'great', 1500, 'not open');
+    insert into apartmentUnit values(02, 'Style 2', 'ok', 1200, 'not open');
+    insert into apartmentUnit values(03, 'Style 3', 'great', 1500, 'not open');
+    insert into apartmentUnit values(04, 'Style 4', 'perfect', 1700, 'not open');
+    insert into apartmentUnit values(05, 'Style 5', 'ok', 2000, 'not open');
+    insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
+    insert into apartmentUnit values(11, 'Style 1', 'great', 1500, 'not open');
+        --## IC Testing ##--
+        -- a1
+        insert into apartmentUnit values(20, 'Style 3', 'great', 1500, 'closed');
+        -- a2 
+        insert into apartmentUnit values(21, 'Style 1', 'poor', 1500, 'open');
+        -- a3
+        insert into apartmentUnit values(22, 'Style 12', 'great', '1500', 'not open');
+        -- a4
+        insert into apartmentUnit values(23, 'Style 1', 'eh', 1500, 'not open');
+        insert into apartmentUnit values(24, 'Style 1', 'eh', 1500, 'not open');
+
+    -------------------
+
+    insert into buildingManager values(123, 'No', 'Bill', 55000);
+    insert into buildingManager values(124, 'Yes', 'Tammy', 55000);
+        --## IC Testing ##-- WORKS
+        -- bm1 (between 55000 and 100000 pay)
+        insert into buildingManager values(999, 'No', 'Bob', 25000);
+        -- bm2 (Landlord value constraint)
+        insert into buildingManager values(999, '??', 'Bob', 55000);
+        -- bm3 (is NOT a Landlord and pay is higher than or equal to 80000)
+        insert into buildingManager values(999, 'yes', 'Bob', 60000);
+
+    -------------------
+
+    insert into employee values (12, 'Tom', 30000, 123);
+    insert into employee values (18, 'David', 30000, 123);
+    insert into employee values (24, 'John', 35000, 123);
+    insert into employee values (30, 'Guy', 55000, 124);
+        --## IC Testing ##--
+        -- e1 (check if employee is not a manager)
+        insert into employee values (36, 'Timothy', 30000, 36);
+        -- e2 (check if pay is not less than 25000 and higher than 55000)
+        insert into employee values (36, 'Timothy', 10000, 123);
+
+    -------------------
+
+    insert into maintenanceRequest values (1234, '01-01-22', 'electrical', 123);
+    insert into maintenanceRequest values (1234, '03-29-21', 'electrical', 124);
+    insert into maintenanceRequest values (1235, '03-05-22', 'plumbing', 124);
+    insert into maintenanceRequest values (1236, '02-07-21', 'furniture', 124);
+        --## IC Testing ##--
+        -- m1 (check for a valid maintenance type)
+        insert into maintenanceRequest values (1235, '02-04-22', 'flooring', 124);
+        -- resId Foreign Key
+        insert into maintenanceRequest values (1000, '01-01-22', 'furniture', 124);
+        -- mgrId Foreign Key
+        insert into maintenanceRequest values (1235, '01-01-22', 'furniture', 100);
+
+    -------------------
+    
+    insert into certification values (12, 'electrical');
+    insert into certification values (18, 'plumbing');
+    insert into certification values (24, 'electrical');
+    insert into certification values (30, 'electrical');
+        --## IC Testing ##--
+        -- c1 (check for a valid maintenance type)
+        insert into certification values (30, 'flooring');
+        -- eId Foreign Key
+        insert into certification values (36, 'electrical');
+    
+    -------------------
+
+    insert into worksOn values (12, 1234, '01-01-22', 5);
+        --## IC Testing ##--
+        -- eId Foreign Key
+        insert into worksOn values (1, 1234, '01-01-22', 5);
+        -- resId, day Foreign Key
+        insert into worksOn values (12, 1000, '01-02-21', 5);
+        -- w1 (checks if hours are below 0 or above 50)
+        insert into worksOn values (12, 1234, '01-01-22', -1);
 
 SET FEEDBACK ON
 COMMIT;
