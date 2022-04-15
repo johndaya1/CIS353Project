@@ -270,7 +270,7 @@ WHERE sex = 'F';
 SELECT MAX(e.pay)
 FROM employee e;
 
-SELECT r.name,r.resID, count(*)
+SELECT r.name,r.resID, r.sex count(*)
   FROM resident r
   WHERE r.collegeYear = 1
   GROUP BY r.sex
