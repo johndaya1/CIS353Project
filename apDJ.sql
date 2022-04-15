@@ -23,7 +23,7 @@ CREATE TABLE resident (         /* Priscilla*/
   unitNum INTEGER NOT NULL,
   collegeYear INTEGER NOT NULL,
   name CHAR(50) NOT NULL,
-  SEX CHAR(1) NOT NULL,
+  sex CHAR(1) NOT NULL,
   major CHAR(30)
   CONSTRAINT r1 CHECK (sex in ('M', 'F')),
   CONSTRAINT r2 CHECK (major in('Computer Science')),
