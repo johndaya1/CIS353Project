@@ -37,7 +37,7 @@ CREATE TABLE apartmentUnit
   roomNum INTEGER PRIMARY KEY,
   style CHAR(12) NOT NULL,
   condition CHAR(12) NOT NULL,
-  price INTEGER UNIQUE,
+  price INTEGER,
   availability CHAR(12) NOT NULL,
   CONSTRAINT a1 CHECK (availability IN ('open', 'not open')),
   CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open')),
