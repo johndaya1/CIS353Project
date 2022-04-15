@@ -162,7 +162,7 @@ FROM certification;
 
   -- Q4 - SUM, AVG, MAX, and/or MIN.
   -- Select the highest paid employee from the employee table.
-  SELECT MAX(e.pay)
+  SELECT MAX(e.pay) AS maxPay
   FROM employee e;
   
   --Q5 - A GROUP BY, HAVING, and ORDER BY
