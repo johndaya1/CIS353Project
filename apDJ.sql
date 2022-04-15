@@ -246,7 +246,7 @@ WHERE collegeYear > 1 AND
   --Query 9
   /*find the name, resident Id, and unit number of every resident. Also show their maintenance requests*/
   SELECT DISTINCT r.name, r.resId, r.unitNum
-  FROM residents r
+  FROM resident r
   LEFT OUTER JOIN maintenanceRequest m
   ON r.resId = m.resId
   ORDER BY r.resId;
