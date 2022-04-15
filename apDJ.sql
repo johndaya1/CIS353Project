@@ -113,6 +113,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     insert into resident values (1236, 03, 4, 'Beyonce Knowles', 'F', 'Computer Science');
     insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
     insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
+    insert into resident values (1239, 06, 1, 'Queen Elizabeth', 'F', 'Computer Science');
         --## IC Testing ##--
         -- r1 (Gender constraint)
         insert into resident values (0001, 10, 1, 'Mike Mike', 'm', 'Computer Science');
@@ -170,6 +171,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
     insert into maintenanceRequest values (1234, '03-29-21', 'electrical', 124);
     insert into maintenanceRequest values (1235, '03-05-22', 'plumbing', 124);
     insert into maintenanceRequest values (1236, '02-07-21', 'furniture', 124);
+    
         --## IC Testing ##--
         -- m1 (check for a valid maintenance type)
         insert into maintenanceRequest values (1235, '02-04-22', 'flooring', 124);
