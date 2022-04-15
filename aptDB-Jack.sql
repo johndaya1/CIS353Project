@@ -192,7 +192,7 @@ WHERE collegeYear = 3
 MINUS
 SELECT r.resId, r.name
 FROM resident r
-WHERE sex = 'F';
+WHERE sex = 'M';
 
 -- QUERY 4
 /* Select the highest paid employee from the employee table*/
