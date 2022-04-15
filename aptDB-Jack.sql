@@ -144,7 +144,7 @@ CREATE TABLE apartmentUnit    /*priscilla*/
         -- e1 (check if employee is not a manager)
         insert into employee values (36, 'Timothy', 30000, 123);
         --e2 (check if pay is not less than 25000 and higher than 55000)
-        insert into employee values (36, 'Timothy', 10000, 123)
+        insert into employee values (36, 'Timothy', 10000, 123);
 
     -------------------
 
@@ -178,11 +178,11 @@ CREATE TABLE apartmentUnit    /*priscilla*/
 /*Find the resDd's and names of residents whose year is 3 and is a female.*/
 SELECT r.resId, r.name
 FROM resident r
-WHERE year == 3
+WHERE collegeYear = 3
 MINUS
 SELECT r.resId, r.name
 FROM resident r
-WHERE sex == 'F'
+WHERE sex = 'F';
 
 -- QUERY 4
 /* Select the highest paid employee from the employee table*/
