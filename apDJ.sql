@@ -271,7 +271,7 @@ FROM employee e;
 SELECT r.name,r.resID, count(*)
   FROM resident r
   WHERE r.collegeYear = 1
-  GROUP BY r.name,r.resID
+  GROUP BY r.name
   HAVING count(*) > 1
   ORDER BY r.collegeYear;
 COMMIT;
