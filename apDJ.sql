@@ -244,8 +244,8 @@ WHERE collegeYear > 1 AND
 		       FROM maintenanceRequest m);
 	
   --Query 9
-  /*find the name, resident Id, and unit number of every resident. Also show their maintenance requests*/
-  SELECT DISTINCT r.name, r.resId, r.unitNum
+  /*find the name, resident Id, and unit number of every resident. Also show their maintenance request date*/
+  SELECT DISTINCT r.name, r.resId, r.unitNum, m.day
   FROM resident r
   LEFT OUTER JOIN maintenanceRequest m
   ON r.resId = m.resId
