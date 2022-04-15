@@ -1,0 +1,66 @@
+SQL> 
+SQL> 
+SQL> --Authors: Dayaseh Johnson, , , ,
+SQL> 
+SQL> 
+SQL> -------------------------------------------
+SQL> 
+SQL> 
+SQL> DROP TABLE resident
+  2  DROP TABLE apartmentUnit
+  3  DROP TABLE maintenanceRequest
+  4  DROP TABLE buildingManager
+  5  DROP TABLE employee
+  6  DROP TABLE works_on
+  7  
+SQL> ------
+SQL> 
+SQL> CREATE TABLE resident
+  2  (
+  3    resID INTEGER PRIMARY KEY,
+  4    unitNum INTEGER NOT NULL,
+  5    collegeYear INTEGER NOT NULL,
+  6    name CHAR(50) NOT NULL,
+  7    SEX CHAR(1) NOT NULL,
+  8    major CHAR(30),
+  9  
+SQL>   /* TO DO: INSERT CONSTRAINTS */
+SQL>   );
+SP2-0042: unknown command ")" - rest of line ignored.
+SQL> 
+SQL>   ------
+SQL> 
+SQL> CREATE TABLE apartmentUnit
+  2  (
+  3    roomNum INTEGER PRIMARY KEY,
+  4    style CHAR(12) NOT NULL,
+  5    condition CHAR(12) NOT NULL,
+  6    price INTEGER NOT NULL,
+  7    availaility CHAR(12) NOT NULL,
+  8  
+SQL>   /*TO DO: INSERT CONSTRAINTS*/
+SQL>   );
+SP2-0042: unknown command ")" - rest of line ignored.
+SQL> 
+SQL> 	-------
+SQL>  CREATE TABLE maintenanceRequest
+  2   (
+  3  	resID INTEGER,
+  4  	date INTEGER /*FIX THIS*/ ,
+  5  	PRIMARY KEY (resID, date),
+  6  	roomNum INTEGER,
+  7  	maintenanceType CHAR(15),
+  8  	mgrID INTEGER,
+  9  
+SQL>   /*TO DO: INSERT CONSTRAINTS*/
+SQL> 	);
+SP2-0042: unknown command ")" - rest of line ignored.
+SQL> 
+SQL> 
+SQL> 
+SQL> @companyDB.sql
+SP2-0310: unable to open file "companyDB.sql"
+SQL> !git pull
+
+SQL> @aptDB.sql
+SQL> SPOOL aptDB.txt

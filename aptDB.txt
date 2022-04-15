@@ -1,0 +1,665 @@
+SQL> SET ECHO ON
+SQL> 
+SQL> 
+SQL> --Authors: Dayaseh Johnson, Priscila Ontiveros, , ,
+SQL> 
+SQL> 
+SQL> -------------------------------------------
+SQL> 
+SQL> 
+SQL> DROP TABLE resident CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> DROP TABLE apartmentUnit CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> DROP TABLE maintenanceRequest CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> DROP TABLE buildingManager CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> DROP TABLE employee CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> DROP TABLE worksOn CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> DROP TABLE certification CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> 
+SQL> ----------
+SQL> 
+SQL> CREATE TABLE resident (	     /* Priscilla*/
+  2    resID INTEGER PRIMARY KEY,
+  3    unitNum INTEGER NOT NULL,
+  4    collegeYear INTEGER NOT NULL,
+  5    name CHAR(50) NOT NULL,
+  6    sex CHAR(1) NOT NULL,
+  7    major CHAR(30),
+  8    CONSTRAINT r1 CHECK (sex in ('M', 'F')),
+  9    CONSTRAINT r2 CHECK (major in('Computer Science')),
+ 10    CONSTRAINT r3 CHECK (NOT(collegeYear > 6))
+ 11   );
+
+Table created.
+
+SQL> 
+SQL>   ------------------
+SQL> 
+SQL> CREATE TABLE apartmentUnit    /*priscilla*/
+  2  (
+  3    roomNum INTEGER PRIMARY KEY,
+  4    style CHAR(12) NOT NULL,
+  5    condition CHAR(12) NOT NULL,
+  6    price INTEGER NOT NULL,
+  7    availability CHAR(12) NOT NULL,
+  8    CONSTRAINT a1 CHECK (availability IN ('open', 'not open')),
+  9    CONSTRAINT a2 CHECK (NOT (condition = 'poor' AND availability = 'open')),
+ 10    CONSTRAINT a3 CHECK (style IN ('Style 1', 'Style 2', 'Style 3', 'Style 4','Style 5', 'Style 6')),
+ 11    CONSTRAINT a4 CHECK (condition IN ('poor', 'ok', 'great', 'perfect'))
+ 12   );
+
+Table created.
+
+SQL> 	------------------
+SQL> 
+SQL> 	CREATE TABLE buildingManager	/*Grant*/
+  2    (
+  3  	 mgrId INTEGER PRIMARY KEY,
+  4  	 isLandlord CHAR(3) NOT NULL,
+  5  	 name CHAR(32) NOT NULL,
+  6  	 pay INTEGER NOT NULL
+  7  	 CONSTRAINT bm1 CHECK (NOT (pay < 55000) OR (pay > 100000)),
+  8  	 CONSTRAINT bm2 CHECK (isLandlord IN ('yes', 'no', 'Yes', 'No')),
+  9  	 CONSTRAINT bm3 CHECK (NOT (pay < 80000 AND isLandlord = 'yes'))
+ 10  	);
+
+Table created.
+
+SQL> 
+SQL> 	-------------------
+SQL> 
+SQL>  CREATE TABLE maintenanceRequest	 /*Grant*/
+  2   (
+  3  	resId INTEGER,
+  4  	day DATE,
+  5  	maintenanceType CHAR(15),
+  6  	mgrId INTEGER,
+  7  	PRIMARY KEY (resId, day),
+  8  	FOREIGN KEY (resId) REFERENCES resident(resId),
+  9  	FOREIGN KEY (mgrId) REFERENCES buildingManager(mgrId),
+ 10  	CONSTRAINT m1 CHECK (maintenanceType IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
+ 11    );
+
+Table created.
+
+SQL> 	---------------------
+SQL> 	 -------------------
+SQL> 	CREATE TABLE employee	     /*DJ*/
+  2  	(
+  3  	  eId INTEGER PRIMARY KEY,
+  4  	  name CHAR(32) NOT NULL,
+  5  	  pay INTEGER,
+  6  	  mgrID INTEGER NOT NULL,
+  7  	  CONSTRAINT e1 CHECK (NOT (eId = mgrID)),
+  8  	  CONSTRAINT e2 CHECK (NOT (pay < 25000) OR (pay > 55000))
+  9  	 );
+
+Table created.
+
+SQL> 	  ----------------
+SQL> 	CREATE TABLE certification   /*DJ*/
+  2  	(
+  3  	  eId INTEGER,
+  4  	  cert CHAR(15),
+  5  	  FOREIGN KEY (eId) REFERENCES employee(eId),
+  6  	  CONSTRAINT c1 CHECK (cert IN ('plumbing', 'electrical', 'mechanical', 'furniture'))
+  7  	 );
+
+Table created.
+
+SQL> 
+SQL> 	  ----------------
+SQL> 	 CREATE TABLE worksOn	   /*Jack*/
+  2  	 (
+  3  	   eId INTEGER,
+  4  	   resId INTEGER,
+  5  	   day DATE,
+  6  	   hours INTEGER,
+  7  	   FOREIGN KEY (eId) REFERENCES employee(eId),
+  8  	   FOREIGN KEY (resId, day) REFERENCES maintenanceRequest(resId, day),
+  9  	   PRIMARY KEY(resId, day),
+ 10  	   CONSTRAINT w1 CHECK(NOT (hours < 0) OR (hours > 50))
+ 11  	  );
+
+Table created.
+
+SQL> 
+SQL> 	/*--------------------------------------------------	   Jack
+SQL> 	Populate Database
+SQL> 	----------------------------------------------------*/
+SQL> 
+SQL> 	alter session set NLS_DATE_FORMAT = 'MM-DD-YY';
+
+Session altered.
+
+SQL> 	 insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
+
+1 row created.
+
+SQL> 	 insert into resident values (1235, 02, 3, 'Jane Doe', 'F', 'Computer Science');
+
+1 row created.
+
+SQL> 	 insert into resident values (1236, 03, 4, 'Beyonce Knowles', 'F', 'Computer Science');
+
+1 row created.
+
+SQL> 	 insert into resident values (1237, 04, 1, 'Michael Jackson', 'M', 'Computer Science');
+
+1 row created.
+
+SQL> 	 insert into resident values (1238, 05, 2, 'Elvis Presley', 'M', 'Computer Science');
+
+1 row created.
+
+SQL> 	 insert into resident values (1239, 06, 1, 'Queen Elizabeth', 'F', 'Computer Science');
+
+1 row created.
+
+SQL> 	 insert into resident values (1241, 06, 1, 'Chris Brown', 'M', 'Computer Science');
+
+1 row created.
+
+SQL> 	     --## IC Testing ##--
+SQL> 	     -- r1 (Gender constraint)
+SQL> 	     insert into resident values (0001, 10, 1, 'Mike Mike', 'm', 'Computer Science');
+        insert into resident values (0001, 10, 1, 'Mike Mike', 'm', 'Computer Science')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.R1) violated 
+
+
+SQL> 	     -- r2 (Major constraint)
+SQL> 	     insert into resident values (0001, 10, 1, 'Mike Mike', 'M', 'Business');
+        insert into resident values (0001, 10, 1, 'Mike Mike', 'M', 'Business')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.R2) violated 
+
+
+SQL> 	     -- r3 (collegeYear cannot be more than 6)
+SQL> 	     insert into resident values (0001, 10, 7, 'Mike Mike', 'M', 'Business');
+        insert into resident values (0001, 10, 7, 'Mike Mike', 'M', 'Business')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.R3) violated 
+
+
+SQL> 
+SQL> 	 -------------------
+SQL> 
+SQL> 	 insert into apartmentUnit values(01, 'Style 1', 'great', 1500, 'not open');
+
+1 row created.
+
+SQL> 	 insert into apartmentUnit values(02, 'Style 2', 'ok', 1200, 'not open');
+
+1 row created.
+
+SQL> 	 insert into apartmentUnit values(03, 'Style 3', 'great', 1500, 'not open');
+
+1 row created.
+
+SQL> 	 insert into apartmentUnit values(04, 'Style 4', 'perfect', 1700, 'not open');
+
+1 row created.
+
+SQL> 	 insert into apartmentUnit values(05, 'Style 5', 'ok', 2000, 'not open');
+
+1 row created.
+
+SQL> 	 insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
+
+1 row created.
+
+SQL> 	 insert into apartmentUnit values(11, 'Style 1', 'great', 1500, 'not open');
+
+1 row created.
+
+SQL> 	     --## IC Testing ##--
+SQL> 	     -- a1
+SQL> 	     insert into apartmentUnit values(20, 'Style 3', 'great', 1500, 'closed');
+        insert into apartmentUnit values(20, 'Style 3', 'great', 1500, 'closed')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.A1) violated 
+
+
+SQL> 	     -- a2
+SQL> 	     insert into apartmentUnit values(21, 'Style 1', 'poor', 1500, 'open');
+        insert into apartmentUnit values(21, 'Style 1', 'poor', 1500, 'open')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.A2) violated 
+
+
+SQL> 	     -- a3
+SQL> 	     insert into apartmentUnit values(22, 'Style 12', 'great', '1500', 'not open');
+        insert into apartmentUnit values(22, 'Style 12', 'great', '1500', 'not open')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.A3) violated 
+
+
+SQL> 	     -- a4
+SQL> 	     insert into apartmentUnit values(23, 'Style 1', 'eh', 1500, 'not open');
+        insert into apartmentUnit values(23, 'Style 1', 'eh', 1500, 'not open')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.A4) violated 
+
+
+SQL> 	     insert into apartmentUnit values(24, 'Style 1', 'eh', 1500, 'not open');
+        insert into apartmentUnit values(24, 'Style 1', 'eh', 1500, 'not open')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.A4) violated 
+
+
+SQL> 
+SQL> 	 -------------------
+SQL> 
+SQL> 	 insert into buildingManager values(123, 'No', 'Bill', 55000);
+
+1 row created.
+
+SQL> 	 insert into buildingManager values(124, 'Yes', 'Tammy', 55000);
+
+1 row created.
+
+SQL> 	     --## IC Testing ##-- WORKS
+SQL> 	     -- bm1 (between 55000 and 100000 pay)
+SQL> 	     insert into buildingManager values(999, 'No', 'Bob', 25000);
+        insert into buildingManager values(999, 'No', 'Bob', 25000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.BM1) violated 
+
+
+SQL> 	     -- bm2 (Landlord value constraint)
+SQL> 	     insert into buildingManager values(999, '??', 'Bob', 55000);
+        insert into buildingManager values(999, '??', 'Bob', 55000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.BM2) violated 
+
+
+SQL> 	     -- bm3 (is NOT a Landlord and pay is higher than or equal to 80000)
+SQL> 	     insert into buildingManager values(999, 'yes', 'Bob', 60000);
+        insert into buildingManager values(999, 'yes', 'Bob', 60000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.BM3) violated 
+
+
+SQL> 
+SQL> 	 -------------------
+SQL> 
+SQL> 	 insert into employee values (12, 'Tom', 30000, 123);
+
+1 row created.
+
+SQL> 	 insert into employee values (18, 'David', 30000, 123);
+
+1 row created.
+
+SQL> 	 insert into employee values (24, 'John', 35000, 123);
+
+1 row created.
+
+SQL> 	 insert into employee values (30, 'Guy', 55000, 124);
+
+1 row created.
+
+SQL> 	     --## IC Testing ##--
+SQL> 	     -- e1 (check if employee is not a manager)
+SQL> 	     insert into employee values (36, 'Timothy', 30000, 36);
+        insert into employee values (36, 'Timothy', 30000, 36)
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.E1) violated 
+
+
+SQL> 	     -- e2 (check if pay is not less than 25000 and higher than 55000)
+SQL> 	     insert into employee values (36, 'Timothy', 10000, 123);
+        insert into employee values (36, 'Timothy', 10000, 123)
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.E2) violated 
+
+
+SQL> 
+SQL> 	 -------------------
+SQL> 
+SQL> 	 insert into maintenanceRequest values (1234, '01-01-22', 'electrical', 123);
+
+1 row created.
+
+SQL> 	 insert into maintenanceRequest values (1234, '03-29-21', 'electrical', 124);
+
+1 row created.
+
+SQL> 	 insert into maintenanceRequest values (1235, '03-05-22', 'plumbing', 124);
+
+1 row created.
+
+SQL> 	 insert into maintenanceRequest values (1236, '02-07-21', 'furniture', 124);
+
+1 row created.
+
+SQL> 
+SQL> 	     --## IC Testing ##--
+SQL> 	     -- m1 (check for a valid maintenance type)
+SQL> 	     insert into maintenanceRequest values (1235, '02-04-22', 'flooring', 124);
+        insert into maintenanceRequest values (1235, '02-04-22', 'flooring', 124)
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.M1) violated 
+
+
+SQL> 	     -- resId Foreign Key
+SQL> 	     insert into maintenanceRequest values (1000, '01-01-22', 'furniture', 124);
+        insert into maintenanceRequest values (1000, '01-01-22', 'furniture', 124)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0085348) violated - parent key 
+not found 
+
+
+SQL> 	     -- mgrId Foreign Key
+SQL> 	     insert into maintenanceRequest values (1235, '01-01-22', 'furniture', 100);
+        insert into maintenanceRequest values (1235, '01-01-22', 'furniture', 100)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0085349) violated - parent key 
+not found 
+
+
+SQL> 
+SQL> 	 -------------------
+SQL> 
+SQL> 	 insert into certification values (12, 'electrical');
+
+1 row created.
+
+SQL> 	 insert into certification values (18, 'plumbing');
+
+1 row created.
+
+SQL> 	 insert into certification values (24, 'electrical');
+
+1 row created.
+
+SQL> 	 insert into certification values (30, 'electrical');
+
+1 row created.
+
+SQL> 	     --## IC Testing ##--
+SQL> 	     -- c1 (check for a valid maintenance type)
+SQL> 	     insert into certification values (30, 'flooring');
+        insert into certification values (30, 'flooring')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.C1) violated 
+
+
+SQL> 	     -- eId Foreign Key
+SQL> 	     insert into certification values (36, 'electrical');
+        insert into certification values (36, 'electrical')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0085356) violated - parent key 
+not found 
+
+
+SQL> 
+SQL> 	 -------------------
+SQL> 
+SQL> 	 insert into worksOn values (12, 1234, '01-01-22', 5);
+
+1 row created.
+
+SQL> 	     --## IC Testing ##--
+SQL> 	     -- eId Foreign Key
+SQL> 	     insert into worksOn values (1, 1234, '01-01-22', 5);
+        insert into worksOn values (1, 1234, '01-01-22', 5)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (JOHNDAYA.SYS_C0085358) violated 
+
+
+SQL> 	     -- resId, day Foreign Key
+SQL> 	     insert into worksOn values (12, 1000, '01-02-21', 5);
+        insert into worksOn values (12, 1000, '01-02-21', 5)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (JOHNDAYA.SYS_C0085360) violated - parent key 
+not found 
+
+
+SQL> 	     -- w1 (checks if hours are below 0 or above 50)
+SQL> 	     insert into worksOn values (12, 1234, '01-01-22', -1);
+        insert into worksOn values (12, 1234, '01-01-22', -1)
+*
+ERROR at line 1:
+ORA-02290: check constraint (JOHNDAYA.W1) violated 
+
+
+SQL> 
+SQL> 	 ---------------------------------------------------
+SQL>   --QUERY 1
+SQL> 	/* select the name and employee ID of each employee who has a certification matching the maintenance type of a maintenance request managed by their own manager*/
+SQL> 	SELECT e.name, e.eid
+  2  	FROM   employee e, maintenanceRequest m, worksOn w, certification c
+  3  	WHERE e.eid = w.eid AND
+  4  	      c.cert = m.maintenanceType AND
+  5  	      e.eid = c.eid AND
+  6  	      e.mgrId = m.mgrId AND
+  7  	      w.day = m.day
+  8    ORDER BY eid;
+
+NAME                                    EID                                     
+-------------------------------- ----------                                     
+Tom                                      12                                     
+
+SQL> 
+SQL>   --QUERY 2
+SQL>   /*find pairs of students that are the same sex and 1 year apart in school. Get their name, sex, and current year*/
+SQL>   SELECT DISTINCT r1.name, r2.name, r1.sex, r2.sex, r1.collegeYear, r2.collegeYear
+  2    FROM resident r1, resident r2
+  3    WHERE r1.sex = r2.sex AND
+  4  	     r1.collegeYear = r2.collegeYear + 1 AND
+  5  	     (NOT r1.name = r2.name)
+  6    ORDER BY r1.collegeYear ASC;
+
+NAME                                                                            
+--------------------------------------------------                              
+NAME                                               S S COLLEGEYEAR COLLEGEYEAR  
+-------------------------------------------------- - - ----------- -----------  
+Elvis Presley                                                                   
+Chris Brown                                        M M           2           1  
+                                                                                
+John Doe                                                                        
+Chris Brown                                        M M           2           1  
+                                                                                
+Elvis Presley                                                                   
+Michael Jackson                                    M M           2           1  
+                                                                                
+
+NAME                                                                            
+--------------------------------------------------                              
+NAME                                               S S COLLEGEYEAR COLLEGEYEAR  
+-------------------------------------------------- - - ----------- -----------  
+John Doe                                                                        
+Michael Jackson                                    M M           2           1  
+                                                                                
+Beyonce Knowles                                                                 
+Jane Doe                                           F F           4           3  
+                                                                                
+
+SQL> 
+SQL> 		--QUERY 8
+SQL>   /*find the resId of every resident that has submitted a maintenance request that was electrical*/
+SQL>   SELECT DISTINCT mr1.resId
+  2    FROM maintenanceRequest mr1
+  3    WHERE NOT EXISTS ((SELECT mr2.maintenanceType
+  4  			  FROM maintenanceRequest mr2
+  5  			  WHERE maintenanceType = 'electrical')
+  6  			 MINUS
+  7  			 (SELECT maintenanceType
+  8  			  FROM maintenanceRequest mr3
+  9  			  WHERE mr1.resID = mr3.resID AND
+ 10  				mr3.maintenanceType = 'electrical'
+ 11  			  ));
+
+     RESID                                                                      
+----------                                                                      
+      1234                                                                      
+
+SQL> 		--QUERY 7
+SQL> /*Find the resId of every student that is past their 1st year and has not submitted a maintenance request*/
+SQL> SELECT DISTINCT r.resId
+  2  FROM resident r
+  3  WHERE collegeYear > 1 AND
+  4  	   r.resId NOT IN (SELECT m.resId
+  5  			    FROM maintenanceRequest m);
+
+     RESID                                                                      
+----------                                                                      
+      1238                                                                      
+
+SQL> 
+SQL>   --Query 9
+SQL>   /*find the name, resident Id, and unit number of every resident. Also show their maintenance request date*/
+SQL>   SELECT DISTINCT r.name, r.resId, r.unitNum, m.day
+  2    FROM resident r
+  3    LEFT OUTER JOIN maintenanceRequest m
+  4    ON r.resId = m.resId
+  5    ORDER BY r.resId;
+
+NAME                                                    RESID    UNITNUM        
+-------------------------------------------------- ---------- ----------        
+DAY                                                                             
+--------                                                                        
+John Doe                                                 1234          1        
+03-29-21                                                                        
+                                                                                
+John Doe                                                 1234          1        
+01-01-22                                                                        
+                                                                                
+Jane Doe                                                 1235          2        
+03-05-22                                                                        
+                                                                                
+
+NAME                                                    RESID    UNITNUM        
+-------------------------------------------------- ---------- ----------        
+DAY                                                                             
+--------                                                                        
+Beyonce Knowles                                          1236          3        
+02-07-21                                                                        
+                                                                                
+Michael Jackson                                          1237          4        
+                                                                                
+                                                                                
+Elvis Presley                                            1238          5        
+                                                                                
+                                                                                
+
+NAME                                                    RESID    UNITNUM        
+-------------------------------------------------- ---------- ----------        
+DAY                                                                             
+--------                                                                        
+Queen Elizabeth                                          1239          6        
+                                                                                
+                                                                                
+Chris Brown                                              1241          6        
+                                                                                
+                                                                                
+
+8 rows selected.
+
+SQL> 
+SQL> -- QUERY 3
+SQL> /*Find the resDd's and names of residents whose year is 3 and is a female.*/
+SQL> SELECT r.resId, r.name
+  2  FROM resident r
+  3  WHERE collegeYear = 3
+  4  MINUS
+  5  SELECT r.resId, r.name
+  6  FROM resident r
+  7  WHERE sex = 'F';
+
+no rows selected
+
+SQL> 
+SQL> -- QUERY 4
+SQL> /* Select the highest paid employee from the employee table*/
+SQL> SELECT MAX(e.pay)
+  2  FROM employee e;
+
+MAX(E.PAY)                                                                      
+----------                                                                      
+     55000                                                                      
+
+SQL> --5
+SQL> SELECT r.name,r.resId, r.sex, count(*)
+  2    FROM resident r
+  3    WHERE r.collegeYear = 1
+  4    GROUP BY r.name, r.resId, r.sex
+  5    HAVING count(*) >= 1
+  6    ORDER BY r.collegeYear;
+
+NAME                                                    RESID S   COUNT(*)      
+-------------------------------------------------- ---------- - ----------      
+Queen Elizabeth                                          1239 F          1      
+Michael Jackson                                          1237 M          1      
+Chris Brown                                              1241 M          1      
+
+SQL> 
+SQL>   --6
+SQL>  SELECT r.resID, r.name
+  2    FROM resident r
+  3    WHERE
+  4    r.collegeYear = 1 AND
+  5  	 NOT EXISTS(
+  6  	   SELECT *
+  7  	   FROM maintenanceRequest M
+  8  	   WHERE m.resID = r.resID
+  9  	 );
+
+     RESID NAME                                                                 
+---------- --------------------------------------------------                   
+      1241 Chris Brown                                                          
+      1239 Queen Elizabeth                                                      
+      1237 Michael Jackson                                                      
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> !git pull
+
+SQL> !ls
+
+SQL> @project.sql
+SQL> SPOOL project.txt
