@@ -269,11 +269,22 @@ WHERE sex = 'F';
 /* Select the highest paid employee from the employee table*/
 SELECT MAX(e.pay)
 FROM employee e;
-
+--5
 SELECT r.name,r.resId, r.sex, count(*)
   FROM resident r
   WHERE r.collegeYear = 1
   GROUP BY r.name, r.resId, r.sex
   HAVING count(*) >= 1
   ORDER BY r.collegeYear;
+  
+  --6
+ SELECT r.resID, r.name
+  FROM resident r
+  WHERE
+  r.collegeYear = 1 AND
+    NOT EXISTS(
+      SELECT *
+      FROM maintenanceRequest M
+      WHERE m.resID = r.resID
+    );
 COMMIT;
