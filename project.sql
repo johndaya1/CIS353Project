@@ -115,8 +115,6 @@ SET FEEDBACK OFF
   		 Populate Database
 ----------------------------------------------------*/
    
-   
-   
    insert into apartmentUnit values(01, 'Style 1', 'great', 1000, 'not open');
    insert into apartmentUnit values(02, 'Style 2', 'ok', 1200, 'not open');
    insert into apartmentUnit values(03, 'Style 3', 'great', 1500, 'not open');
@@ -125,9 +123,8 @@ SET FEEDBACK OFF
    insert into apartmentUnit values(06, 'Style 6', 'great', 2200, 'not open');
    insert into apartmentUnit values(11, 'Style 1', 'great', 1000, 'not open');
    
-   ---------------------------------------------
+   -------------------
    
-   alter session set NLS_DATE_FORMAT = 'MM-DD-YY';
    insert into resident values (1234, 01, 2, 'John Doe', 'M', 'Computer Science');
    insert into resident values (1235, 02, 3, 'Jane Doe', 'F', 'Computer Science');
    insert into resident values (1236, 03, 4, 'Beyonce Knowles', 'F', 'Computer Science');
