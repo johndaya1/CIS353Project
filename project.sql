@@ -3,7 +3,7 @@ SET ECHO ON
 /*
 CIS 353 - Database Design Project
 <One line per team member name; in alphabetical order>
-Johnson, Dasayeh
+Johnson, Dayaseh
 Kleitch, Jack
 Ontiveros, Priscila
 Spears, Grant
